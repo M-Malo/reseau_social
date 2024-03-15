@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="background">
+    <div class="top">
+        <h1 class="label">Bienvenue sur Kwack {{userConnected}} !</h1>
+    </div>
+    <div class="container">
+        <div class="colonneTri label">
+            <div>
+                <p>Tri des évenements</p>
+            </div>
+            <div>
+                <form>
+                    <label><input type="radio" name="tri" value="prixCroissant"> Prix croissant</label><br>
+                    <label><input type="radio" name="tri" value="prixDecroissant"> Prix Décroissant</label><br>
+                    <label><input type="radio" name="tri" value="dateCroissant"> Date Croissant</label><br>
+                    <label><input type="radio" name="tri" value="dateDecroissant"> Date Décroissant</label><br>
+                </form>                  
+            </div>
+        </div>
+        <div *ngFor="let event of eventList" class="colonneEvent">
+            
+                <div class="infoProfil">
+                    <img class="imageProfil" src="../../../assets/images/poolparty.jpg" alt="">
+                    <p class="label">M-Malo</p>
+                </div>
+                <div class="titreEvent label">
+                    <p>{{event.Nom}}</p>
+                </div>
+                <div class="resteInfoEvent">
+                    <img src="../../../assets/images/poolparty.jpg" alt="" class="imageEvent">
+                    <div class="label infoEvent">
+                        <p>{{event.Theme}}</p>
+                        <p>28-02-2024</p>
+                        <p>{{event.Prix}}€</p>
+                    </div>
+                </div>
+            <hr class="ligneHorizon">
+        </div>
+        <div class="colonneFiltre label">
+            <div>
+                <p>filtres</p>                  
+            </div>
+            <hr class="ligneHorizon">
+            <div>
+                <p>Prix</p>
+                <input type="range" min="0" max="100" value="50">
+            </div>
+            <div>
+                <p>Recherche par mot clé</p>
+                <input type="text" placeholder="Tapez un mot clé">
+            </div>
+            <div>
+                <p>Themes</p>
+                <select name="choix" id="choix" class="inputTheme">
+                    <option value="0">Sport</option>
+                    <option value="1">Culture</option>
+                    <option value="2">Festif</option>
+                    <option value="3">Pro</option>
+                    <option value="4">Autre</option>
+                </select>
+            </div>
+            <hr class="ligneHorizon">
+            <button class="btnAppliquerFiltres">Appliquer les filtres</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.background {
+    background-color: #17202A;
+    height: 100vh;
+    justify-content: center;
+    margin: -8px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
+    border-radius: 20px;
+    background-color: #F1F2F5;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+}

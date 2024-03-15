@@ -1,0 +1,102 @@
+.background {
+    background-color: #17202A;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 15% 85%;
+    margin: -8px;
+    overflow: scroll;
+}
+
+.container {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    gap: 10px;
+}
+
+.top {
+    display: flex;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-content: center;
+}
+
+.colonneTri {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: #283340;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 150px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.colonneEvent {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-rows: 20% 10% 70%;
+    gap: 5px;
+}
+
+.colonneFiltre {
+    background-color: #283340;
+    border-radius: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    justify-content: first baseline;
+    
+}
+
+.btnAppliquerFiltres{
+    margin-top: 15px;
+}
+
+.ligneHorizon {
+    width: 100%
+}
+
+.inputTheme {
+    margin-bottom: 15px;
+}
+
+.infoProfil {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    padding-top: 25px;
+}
+
+.titreEvent {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.resteInfoEvent {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    text-align: right;
+}
+
+.imageProfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 15px;
+}
+
+.imageEvent {
+    width: 400px;
+    height: 225px;
+}
