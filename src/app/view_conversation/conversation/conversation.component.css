@@ -1,0 +1,28 @@
+.background {
+    background-color: #17202A;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 15% 85%;
+    margin: -8px;
+    overflow: scroll;
+}
+
+.conversations {
+    text-align: center;
+}
+
+.container {
+    background-color: #283340;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    border-radius: 15px;
+}
+
+.contact {
+    display: flex;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+}

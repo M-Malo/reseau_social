@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="background">
+    <h1 class="label">Bienvenue {{user}}</h1>
+    <div class="conversations" *ngFor="let conversation in conversationListe">
+        <p>p</p>
+        <div class="container">
+            <div class="contact">
+                <img src="../../../assets/images/poolparty.jpg" alt="">
+                <p>{{user}}</p>
+            </div>
+            <div class="dernierMessage">
+                <p>{{dernierMessage.contenu}}</p>
+            </div>
+        </div>
+    </div>
+</div>

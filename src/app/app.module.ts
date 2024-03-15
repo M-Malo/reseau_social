@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AccueilComponent } from './view_accueil/accueil/accueil.component';
 import { HeaderComponent } from './header/header.component';
+import { AccountComponent } from './account/account.component';
+import { ConversationComponent } from './view_conversation/conversation/conversation.component';
+import { ChatComponent } from './view_conversation/chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AccueilComponent,
-    HeaderComponent
+    HeaderComponent,
+    AccountComponent,
+    ConversationComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

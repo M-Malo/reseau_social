@@ -1,0 +1,75 @@
+.background {
+    background-color: #17202A;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 15% 85%;
+    margin: -8px;
+    overflow: scroll;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    grid-template-rows: 15% 85%;
+}
+
+.gauche {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    text-align: center;
+}
+
+.milieu {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    text-align: center;
+}
+
+.droite {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    text-align: center;
+}
+
+.titre {
+    text-align: center;
+    grid-row-start: 1;
+    grid-column-start: 2;
+}
+
+.imageProfil {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.admin{
+    color: red;
+    text-decoration: double;
+}
+
+.eventUtilisateur {
+    background-color: #283340;
+    border-radius: 15px;
+    list-style-position: inside;
+    text-align: left;
+    padding: 15px;
+    max-width: 250px;
+}
+
+.droite-haut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    border-radius: 10px;
+    background-color: #283340;
+    color: #F1F2F5;
+    width: 200px;
+    height: 20px;
+}
