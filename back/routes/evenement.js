@@ -1,5 +1,4 @@
 const express = require('express');
-const User = require("../model/User");
 const Event = require("../model/Event");
 const router = express.Router();
 
@@ -17,8 +16,10 @@ router.post('/new', async (req, res) => {
       req.body.description
     )
       .then(console.log);
+    res.status(200).send("L'évènement a été ajouté avec succès.");
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de l'ajout de l'évènement." });
   }
 });
 
@@ -36,8 +37,10 @@ router.post('/:idEvent/update', (req, res) => {
       req.body.description
     )
       .then(console.log);
+    res.status(200).send("L'évènement a été mis à jour avec succès.");
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la mise à jour de l'évènement." });
   }
 });
 
@@ -47,8 +50,10 @@ router.post('/:idEvent/delete', async (req, res) => {
   try {
     Event.deleteById(req.params.idEvent)
       .then(console.log);
+    res.status(200).send("L'évènement a été supprimé avec succès.");
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la suppression de l'évènement." });
   }
 });
 
@@ -56,22 +61,24 @@ router.post('/:idEvent/delete', async (req, res) => {
 router.get('/:idEvent', async (req, res) => {
 
   try {
-    Event.getById(req.params.idEvent)
-      .then(console.log);
+    const event = await Event.getById(req.params.idEvent);
+    res.json(event);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération de l'évènement." });
   }
 });
 
 
-/* Récupération d'un évènement */
+/* Récupération des évènements selon idUser */
 router.get('/get/:idUser', async (req, res) => {
 
   try {
-    Event.getByUser(req.params.idUser)
-      .then(console.log);
+    const events = await Event.getByUser(req.params.idUser);
+    res.json(events);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération de l'évènement d'un utilisateur." });
   }
 });
 

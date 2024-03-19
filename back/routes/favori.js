@@ -1,6 +1,4 @@
 const express = require('express');
-const User = require('../model/User');
-const Event = require('../model/Event');
 const Favoris = require('../model/Favoris');
 
 const router = express.Router();
@@ -12,28 +10,32 @@ router.post('/new', async (req, res) => {
       req.body.id_event,
       req.body.id_user)
       .then(console.log);
+    res.status(200).send("Le favori a été créé avec succès.");
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la création du favori." });
   }
 });
 
 /* Récupération des favoris d'un user */
 router.get('/user/:idUser', async (req, res) => {
   try {
-    Favoris.getByUser(req.params.idUser)
-      .then(console.log);
+    const favoris = await Favoris.getByUser(req.params.idUser);
+    res.json(favoris);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des favoris de l'utilisateur." });
   }
 });
 
 /* Récupération des favoris d'un event */
 router.get('/event/:idEvent', async (req, res) => {
   try {
-    Favoris.getByEvent(req.params.idEvent)
-      .then(console.log);
+    const favoris = Favoris.getByEvent(req.params.idEvent);
+    res.json(favoris);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des favoris d'un évènement." });
   }
 });
 
