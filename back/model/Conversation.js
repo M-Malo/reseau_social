@@ -7,7 +7,7 @@ const dbName = args[1] ?? "projet_RS";
 
 const Conversation = {
 
-  addConversation : async function(idUser1, idUser2) {
+  addConversation : async function(idUser1Str, idUser2Str) {
 
     const client = new MongoClient(url);
     try {
@@ -17,8 +17,8 @@ const Conversation = {
 
       const conversationsCollection = db.collection('conversations');
       await conversationsCollection.insertOne({
-        id_user1 : idUser1,
-        id_user2 : idUser2
+        id_user1 : new ObjectId(idUser1Str),
+        id_user2 : new ObjectId(idUser2Str)
       })
         .then(
           () => {
@@ -47,8 +47,8 @@ const Conversation = {
       return await Promise.all(conversations.map(async conversation => {
         return {
           _id: conversation._id.toString(),
-          id_user1: conversation.id_user1,
-          id_user2: conversation.id_user2
+          id_user1: conversation.id_user1.toString(),
+          id_user2: conversation.id_user2.toString()
         };
       }));
     }

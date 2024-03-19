@@ -86,7 +86,7 @@ const User = {
     await usersCollection.deleteOne({_id: userId});
   },
 
-  updateById : async function(userIdStr, nom_utilisateur, nom, prenom, mail, admin, image, date_naissance, mdp) {
+  updateById : async function(userIdStr, nom_utilisateur, nom, prenom, mail, admin, image, date_naissance) {
 
     const client = new MongoClient(url);
     const db = client.db(dbName);
@@ -100,9 +100,22 @@ const User = {
         mail: mail,
         admin: admin,
         image: image,
-        date_naissance: date_naissance,
-        mdp: mdp
+        date_naissance: date_naissance
     }});
+  },
+
+  validateEmail : function (mail){
+    let pattern = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
+
+    if (pattern.test(mail))
+    {
+      console.log('La saisie est une adresse email valide ');
+    }
+    else
+    {
+      //console.warn("L'adresse mail saisie est invalide !");
+      throw "L'adresse mail saisie est invalide !";
+    }
   }
 
 }

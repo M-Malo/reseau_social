@@ -5,35 +5,56 @@ const Message = require('../model/Message');
 
 const router = express.Router();
 
-/* Test création d'une conversation */
+/* Création d'une conversation */
 router.post('/add', async (req, res) => {
   try {
     Conversation.addConversation(
-      "65f9549fbdcbc7370c3b8db5",
-      "65f45276023b80f8d23dc2cb")
+      req.body.id_user1,
+      req.body.id_user2)
       .then(console.log);
   } catch (error) {
     console.error(error);
   }
 });
 
-router.post('/get/:X', async (req, res) => {
+/* Récupération des conversations d'un user */
+router.get('/get/:idUser', async (req, res) => {
   try {
-    Conversation.getByUser(req.params.X)
+    Conversation.getByUser(req.params.idUser)
       .then(console.log);
   } catch (error) {
     console.error(error);
   }
 });
 
-/* Test envoi d'un message */
-router.post('/:X/send', async (req, res) => {
+/* Récupération d'une conversation par l'idConversation */
+router.get('/:idConversation', async (req, res) => {
+  try {
+    Conversation.getById(req.params.idConversation)
+      .then(console.log);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+/* Envoi d'un message dans une conversation */
+router.post('/:idConv/send', async (req, res) => {
   try {
     Message.addMessage(
-      req.params.X,
-      "65f4551940f8d922df410ac9",
-      "bonjour",
-      Date.now())
+      req.params.idConv,
+      req.body.userId,
+      req.body.contenu,
+      req.body.date)
+      .then(console.log);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+/* Récupération des messages d'une conversation */
+router.get('/:idConversation/messages', async (req, res) => {
+  try {
+    Message.getByConversation(req.params.idConversation)
       .then(console.log);
   } catch (error) {
     console.error(error);

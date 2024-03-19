@@ -63,8 +63,7 @@ const Message  = {
       });
   },
 
-
-  getByUser : async function(userId) {
+  getByUser : async function(userIdStr) {
 
     return this.getAll()
       .then(messages => {
@@ -72,11 +71,11 @@ const Message  = {
       });
   },
 
-  getByConversation : async function(conversationId) {
+  getByConversation : async function(conversationIdStr) {
 
     return this.getAll()
       .then(messages => {
-        return messages.filter(message => message.id_conversation === conversationId);
+        return messages.filter(message => message.id_conversation.toString() === conversationIdStr);
       });
   },
 
@@ -90,10 +89,6 @@ const Message  = {
     await messagesCollection.deleteOne({_id: messageId});
   },
 
-  sortByDate : async function(listMessages) {
-
-    return listMessages.sort({date: -1});
-  },
 
 }
 

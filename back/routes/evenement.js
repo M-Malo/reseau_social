@@ -4,53 +4,75 @@ const Event = require("../model/Event");
 const router = express.Router();
 
 
-/* Test ajout d'un évènement */
-router.post('/add', async (req, res) => {
+/* Ajout d'un évènement */
+router.post('/new', async (req, res) => {
   try {
     await Event.addEvent(
-      "65f45276023b80f8d23dc2cb",
-      "event1",
-      1,
-      "imageEvent1.png",
-      15,
-      Date.now(),
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus."
-  );
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-/* Test modification d'un évènement */
-router.post('/:X/update', (req, res) => {
-  try {
-    Event.updateById(
-      "65f46374dd94d0cf56ea39df",
-      "65f45276023b80f8d23dc2cb",
-      "event1",
-      1,
-      "imageEvent1.png",
-      15,
-      Date.now(),
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus."
+      req.body.id_organisateur,
+      req.body.nom,
+      req.body.theme,
+      req.body.image,
+      req.body.prix,
+      req.body.date_event,
+      req.body.description
     )
       .then(console.log);
   } catch (error) {
     console.error(error);
   }
-  //res.redirect('/categories');
 });
 
-/* Test suppression d'un évènement  */
-router.post('/:X/delete', async (req, res) => {
-
+/* Modification d'un évènement */
+router.post('/:idEvent/update', (req, res) => {
   try {
-    Product.deleteById(req.params.X)
+    Event.updateById(
+      req.params.idEvent,
+      req.body.id_organisateur,
+      req.body.nom,
+      req.body.theme,
+      req.body.image,
+      req.body.prix,
+      req.body.date_event,
+      req.body.description
+    )
       .then(console.log);
   } catch (error) {
     console.error(error);
   }
 });
 
+/* Suppression d'un évènement */
+router.post('/:idEvent/delete', async (req, res) => {
+
+  try {
+    Event.deleteById(req.params.idEvent)
+      .then(console.log);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+/* Récupération d'un évènement par id */
+router.get('/:idEvent', async (req, res) => {
+
+  try {
+    Event.getById(req.params.idEvent)
+      .then(console.log);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
+/* Récupération d'un évènement */
+router.get('/get/:idUser', async (req, res) => {
+
+  try {
+    Event.getByUser(req.params.idUser)
+      .then(console.log);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = router;

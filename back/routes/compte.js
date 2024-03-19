@@ -4,40 +4,38 @@ const Event = require('../model/Event');
 const router = express.Router();
 
 
-/* Test ajout d'un utilisateur */
-router.post('/add', async (req, res) => {
-  console.log("req.body.name");
-  //console.log(req.body.name);
+/* Ajout d'un utilisateur */
+router.post('/new', async (req, res) => {
   try {
+    await User.validateEmail(req.body.mail);
     User.addUser(
-      "user3",
-      "nom3",
-      "prenom3",
-      "user3.gmail.com",
-      "false",
-      "avatar3.png",
-      "03-03-2003",
-      "123456")
-    //User.addUser("user2", "nom2", "prenom2", "user2.gmail.com", "false", "avatar2.png", "02-02-2002", "23456")
+      req.body.nom_utilisateur,
+      req.body.nom,
+      req.body.prenom,
+      req.body.mail,
+      req.body.admin,
+      req.body.image,
+      req.body.date_naissance,
+      req.body.mdp)
       .then(console.log);
   } catch (error) {
     console.error(error);
   }
 });
 
-/* Test modification d'un utilisateur */
-router.post('/:X/update', (req, res) => {
+/* Modification d'un utilisateur */
+router.post('/:idUser/update', async (req, res) => {
   try {
+    await User.validateEmail(req.body.mail);
     User.updateById(
-      req.params.X,
-      "user1",
-      "nom1",
-      "prenom1",
-      "user1.gmail.com",
-      "false",
-      "avatar1.png",
-      "01-01-2001",
-      "12345")
+      req.params.idUser,
+      req.body.nom_utilisateur,
+      req.body.nom,
+      req.body.prenom,
+      req.body.mail,
+      req.body.admin,
+      req.body.image,
+      req.body.date_naissance)
       .then(console.log);
   } catch (error) {
     console.error(error);
