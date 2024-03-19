@@ -1,3 +1,10 @@
 .label {
     color: #F1F2F5;
 }
+
+.bouton{
+    border-radius: 30px;
+    background-color: #4BA0EC;
+    border: none;
+    padding: 8px;
+}

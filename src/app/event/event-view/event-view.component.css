@@ -1,0 +1,68 @@
+.background {
+    background-color: #17202A;
+    height: 100vh;
+    display: grid;
+    margin: -8px;
+    overflow: scroll;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 10% 15% 40% 10% 10% 15%;
+}
+
+.nom{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.description{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: center;
+    background-color: #283340;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.image{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    max-width: 405px;
+    max-height: 270px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.info{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: flex;
+    justify-content: center;
+}
+
+.editEvent{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    margin: auto;
+    padding: 8px;
+    border-radius: 30px;
+    background-color: #4BA0EC;
+    border: none;
+}

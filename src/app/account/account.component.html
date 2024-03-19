@@ -33,14 +33,14 @@
     </div>
     <div class="droite">
         <div class="droite-haut">
-            <p>Mes évenements</p>
+            <p class="label">Mes évenements</p>
             <div class="eventUtilisateur">
-                <li *ngFor="let event of eventList">{{event}}</li>
+                <li *ngFor="let event of eventList" class="label">{{event}}</li>
             </div>
         </div>
         <div class="droite-bas">
-            <p>{{nbEventFavoris}} évenements en favoris</p>
-            <button>Consulter</button>  <!--On fait quoi ? direction accueil avec favoris en filtre ? nouveau composant ?-->
+            <p class="label">{{nbEventFavoris}} évenements en favoris</p>
+            <button class="bouton">Consulter</button>  <!--On fait quoi ? direction accueil avec favoris en filtre ? nouveau composant ?-->
         </div>
     </div>
 </div>

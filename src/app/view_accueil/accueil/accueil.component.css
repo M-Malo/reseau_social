@@ -38,6 +38,9 @@
 .colonneEvent {
     grid-column-start: 2;
     grid-column-end: 3;
+}
+
+.event{
     display: grid;
     grid-template-rows: 20% 10% 70%;
     gap: 5px;

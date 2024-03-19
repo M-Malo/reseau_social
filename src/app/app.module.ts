@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { AccountComponent } from './account/account.component';
 import { ConversationComponent } from './view_conversation/conversation/conversation.component';
 import { ChatComponent } from './view_conversation/chat/chat.component';
+import { EventFormComponent } from './event/event-form/event-form.component';
+import { EventViewComponent } from './event/event-view/event-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ChatComponent } from './view_conversation/chat/chat.component';
     HeaderComponent,
     AccountComponent,
     ConversationComponent,
-    ChatComponent
+    ChatComponent,
+    EventFormComponent,
+    EventViewComponent
   ],
   imports: [
     BrowserModule,
