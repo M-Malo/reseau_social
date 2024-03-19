@@ -4,9 +4,9 @@ export class Message {
     idConversation: number;
     idUser: number;
     contenu: string;
-    date: Date;
+    date: string;
 
-    constructor(idMessage: number, idConversation: number, idUser: number, contenu:string, date: Date) {
+    constructor(idMessage: number, idConversation: number, idUser: number, contenu:string, date: string) {
         this.idMessage = idMessage;
         this.idConversation = idConversation;
         this.idUser = idUser;

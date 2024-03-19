@@ -6,14 +6,15 @@ import { AccountComponent } from './account/account.component';
 import { ConversationComponent } from './view_conversation/conversation/conversation.component';
 import { EventFormComponent } from './event/event-form/event-form.component';
 import { EventViewComponent } from './event/event-view/event-view.component';
+import { AuthGuard } from './guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'account', component: AccountComponent },
-  { path: 'conversation', component: ConversationComponent },
-  { path: 'eventForm', component: EventFormComponent },
-  { path: 'eventDetail', component: EventViewComponent },
+  { path: 'accueil', component: AccueilComponent, canActivate:[AuthGuard] },
+  { path: 'account', component: AccountComponent, canActivate:[AuthGuard] },
+  { path: 'conversation', component: ConversationComponent, canActivate:[AuthGuard] },
+  { path: 'eventForm', component: EventFormComponent, canActivate:[AuthGuard] },
+  { path: 'eventDetail/:id', component: EventViewComponent, canActivate:[AuthGuard] },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '**', redirectTo: 'accueil', pathMatch: 'full' },
   ];

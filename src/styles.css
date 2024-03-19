@@ -8,3 +8,7 @@
     border: none;
     padding: 8px;
 }
+
+.bouton:hover{
+    cursor: pointer;
+}

@@ -5,10 +5,10 @@ export class User{
     password: string;
     nom: string;
     prenom: string;
-    dateDeNaissance: Date;
+    dateDeNaissance: string;
     admin: boolean;
 
-    constructor(idUser: string, username: string, mail: string, password: string, nom: string, prenom: string, dateDeNaissance: Date, admin: boolean) {
+    constructor(idUser: string, username: string, mail: string, password: string, nom: string, prenom: string, dateDeNaissance: string, admin: boolean) {
         this.idUser = idUser;
         this.username = username;
         this.mail = mail;

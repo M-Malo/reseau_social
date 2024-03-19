@@ -9,6 +9,6 @@ import { Message } from 'src/app/model/message';
 })
 export class ConversationComponent {
   conversationListe: Conversation[] = [new Conversation(0,0,1),new Conversation(1,0,2),new Conversation(2,0,3)]
-  dernierMessage: Message = new Message(0,0,0,"C'est mon dernier message",new Date())
+  dernierMessage: Message = new Message(0,0,0,"C'est mon dernier message","2024-03-19")
   user = "M-Malo"
 }

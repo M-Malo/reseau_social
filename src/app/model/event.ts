@@ -6,10 +6,10 @@ export class Event {
     Theme: number;
     Image: string;
     Prix: number;
-    Date: Date;
+    Date: string;
     Description: string;
 
-    constructor(IdEvent: number, IdCreateur: number, Nom: string, Theme: number, Image: string, Prix: number, Date: Date, Description: string) {
+    constructor(IdEvent: number, IdCreateur: number, Nom: string, Theme: number, Image: string, Prix: number, Date: string, Description: string) {
         this.IdEvent = IdEvent;
         this.IdCreateur = IdCreateur;
         this.Nom = Nom;

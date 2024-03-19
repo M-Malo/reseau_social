@@ -1,5 +1,5 @@
 <div class="background">
-    <div class="container">
+    <div *ngIf="!veutCreerCompte" class="container">
         <h1 class="label">Bienvenue sur la page de connecxion de Kwack !</h1>
         <div>
             <p class="label">Login</p>
@@ -9,9 +9,42 @@
             <p class="label">Mot de passe</p>
             <input class="input" type="text">
         </div>
+        <div class="connection">
+            <button class="bouton" (click)="login()" >Se connecter</button>
+        </div>
         <div>
-            <p class="label">Pas de compte ? <a href="">Inscrivez-vous !</a></p>
+            <p class="label">Pas de compte ? <a class="link" (click)="switchMode()">Inscrivez-vous !</a></p>
         </div>
         <img src="../../assets/images/logo_Kack.png" class="image" alt="">
+    </div>
+    <div *ngIf="veutCreerCompte">
+        <div class="milieu">
+            <div class="username">
+                <p class="label">Nom d'utilisateur</p>
+                <input class="input" type="text" value="">
+            </div>
+            <div class="mail">
+                <p class="label">Adresse mail</p>
+                <input class="input" type="text" value="">
+            </div>
+            <div class="password">
+                <p class="label">Mot de passe</p>
+                <input class="input" type="text" value="">
+            </div>
+            <div class="nom">
+                <p class="label">Nom</p>
+                <input class="input" type="text" value="">
+            </div>
+            <div class="prenom">
+                <p class="label">Prénom</p>
+                <input class="input" type="text" value="">
+            </div>
+            <div class="birthday" id="birthday">
+                <p class="label">Date de naissance</p>
+                <input class="input" type="date" value="">
+            </div>
+        </div>
+        <button class="bouton" (click)="switchMode()">Retour a la page de connection</button>
+        <button class="bouton">Valider l'inscription</button>
     </div>
 </div>

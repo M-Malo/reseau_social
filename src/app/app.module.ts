@@ -11,6 +11,7 @@ import { ConversationComponent } from './view_conversation/conversation/conversa
 import { ChatComponent } from './view_conversation/chat/chat.component';
 import { EventFormComponent } from './event/event-form/event-form.component';
 import { EventViewComponent } from './event/event-view/event-view.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EventViewComponent } from './event/event-view/event-view.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

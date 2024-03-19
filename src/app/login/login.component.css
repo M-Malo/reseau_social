@@ -23,3 +23,11 @@
     height: 100px;
     margin-top: 20px;
 }
+
+.link:hover{
+    cursor: pointer;
+}
+
+.connection{
+    padding: 15px;
+}

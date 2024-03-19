@@ -8,27 +8,27 @@
     <div class="milieu">
         <div class="username">
             <p class="label">Nom d'utilisateur</p>
-            <input class="input" type="text" value="{{utilisateur.username}}">
+            <input class="input" type="text" [(ngModel)]="utilisateur.username">
         </div>
         <div class="mail">
             <p class="label">Adresse mail</p>
-            <input class="input" type="text" value="{{utilisateur.mail}}">
+            <input class="input" type="text" [(ngModel)]="utilisateur.mail">
         </div>
         <div class="password">
             <p class="label">Mot de passe</p>
-            <input class="input" type="text" value="{{utilisateur.password}}">
+            <input class="input" type="text" [(ngModel)]="utilisateur.password">
         </div>
         <div class="nom">
             <p class="label">Nom</p>
-            <input class="input" type="text" value="{{utilisateur.nom}}">
+            <input class="input" type="text" [(ngModel)]="utilisateur.nom">
         </div>
         <div class="prenom">
             <p class="label">Prénom</p>
-            <input class="input" type="text" value="{{utilisateur.prenom}}">
+            <input class="input" type="text" [(ngModel)]="utilisateur.prenom">
         </div>
         <div class="birthday" id="birthday">
             <p class="label">Date de naissance</p>
-            <input class="input" (change)="logValueDate()" type="date" value="{{bday}}" (ngModel)="bday">
+            <input class="input" (change)="logValueDate()" type="date" [(ngModel)]="utilisateur.dateDeNaissance">
         </div>
     </div>
     <div class="droite">
