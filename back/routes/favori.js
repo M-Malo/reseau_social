@@ -31,7 +31,7 @@ router.get('/user/:idUser', async (req, res) => {
 /* Récupération des favoris d'un event */
 router.get('/event/:idEvent', async (req, res) => {
   try {
-    const favoris = Favoris.getByEvent(req.params.idEvent);
+    const favoris = await Favoris.getByEvent(req.params.idEvent);
     res.json(favoris);
   } catch (error) {
     console.error(error);

@@ -25,7 +25,7 @@ router.post('/new', async (req, res) => {
 });
 
 /* Modification d'un utilisateur */
-router.post('/:idUser/update', async (req, res) => {
+router.post('/update/:idUser', async (req, res) => {
   try {
     await User.validateEmail(req.body.mail);
     await User.updateById(

@@ -5,7 +5,7 @@ const Message = require('../model/Message');
 const router = express.Router();
 
 /* Création d'une conversation */
-router.post('/add', async (req, res) => {
+router.post('/new', async (req, res) => {
   try {
     await Conversation.addConversation(
       req.body.id_user1,
@@ -39,8 +39,19 @@ router.get('/:idConversation', async (req, res) => {
   }
 });
 
+/* Récupération des messages d'une conversation */
+router.get('/messages/:idConversation', async (req, res) => {
+  try {
+    const messages = await Message.getByConversation(req.params.idConversation);
+    res.json(messages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération de la conversation." });
+  }
+});
+
 /* Envoi d'un message dans une conversation */
-router.post('/:idConv/send', async (req, res) => {
+router.post('/messages/:idConv/send', async (req, res) => {
   try {
     Message.addMessage(
       req.params.idConv,
@@ -52,17 +63,6 @@ router.post('/:idConv/send', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de la création du message." });
-  }
-});
-
-/* Récupération des messages d'une conversation */
-router.get('/:idConversation/messages', async (req, res) => {
-  try {
-    const messages = await Message.getByConversation(req.params.idConversation);
-    res.json(messages);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération de la conversation." });
   }
 });
 

@@ -24,7 +24,7 @@ router.post('/new', async (req, res) => {
 });
 
 /* Modification d'un évènement */
-router.post('/:idEvent/update', (req, res) => {
+router.post('/update/:idEvent', (req, res) => {
   try {
     Event.updateById(
       req.params.idEvent,
@@ -44,18 +44,18 @@ router.post('/:idEvent/update', (req, res) => {
   }
 });
 
-/* Suppression d'un évènement */
-router.post('/:idEvent/delete', async (req, res) => {
+/* Récupération de l'ensemble des évènements */
+router.get('/', async (req, res) => {
 
   try {
-    Event.deleteById(req.params.idEvent)
-      .then(console.log);
-    res.status(200).send("L'évènement a été supprimé avec succès.");
+    const event = await Event.getAll();
+    res.json(event);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Une erreur s'est produite lors de la suppression de l'évènement." });
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des évènements." });
   }
 });
+
 
 /* Récupération d'un évènement par id */
 router.get('/:idEvent', async (req, res) => {
@@ -69,7 +69,6 @@ router.get('/:idEvent', async (req, res) => {
   }
 });
 
-
 /* Récupération des évènements selon idUser */
 router.get('/get/:idUser', async (req, res) => {
 
@@ -82,4 +81,16 @@ router.get('/get/:idUser', async (req, res) => {
   }
 });
 
+/* Suppression d'un évènement */
+router.post('/delete/:idEvent', async (req, res) => {
+
+  try {
+    Event.deleteById(req.params.idEvent)
+      .then(console.log);
+    res.status(200).send("L'évènement a été supprimé avec succès.");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la suppression de l'évènement." });
+  }
+});
 module.exports = router;
