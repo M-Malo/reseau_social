@@ -16,9 +16,9 @@ const Event  = {
     eventsCollection.insertOne({
       id_organisateur: userId,
       nom: nom,
-      theme: theme,
+      theme: Number(theme),
       image: image,
-      prix: prix,
+      prix: Number(prix),
       date_event: date,
       description: description
     })
@@ -139,9 +139,9 @@ const Event  = {
         {
           id_organisateur : userId,
           nom : nom,
-          theme : theme,
+          theme : Number(theme),
           image : image,
-          prix : prix,
+          prix : Number(prix),
           date_event : date,
           description : description,
         }})

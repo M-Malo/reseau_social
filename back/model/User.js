@@ -21,7 +21,7 @@ const User = {
         nom : nom,
         prenom : prenom,
         mail : mail,
-        admin : admin,
+        admin : (admin.toLowerCase() === 'true'),
         image : image,
         date_naissance : date_naissance,
         mdp : mdp
@@ -98,7 +98,7 @@ const User = {
         nom: nom,
         prenom: prenom,
         mail: mail,
-        admin: admin,
+        admin: (admin.toLowerCase() === 'true'),
         image: image,
         date_naissance: date_naissance
     }});
