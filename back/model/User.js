@@ -77,6 +77,13 @@ const User = {
     });
   },
 
+  getByUsername : async function(username){
+
+    return this.getAll().then(users => {
+      return users.find( user => user.nom_utilisateur === username );
+    });
+  },
+
   deleteById : async function(userIdStr) {
 
     const client = new MongoClient(url);
@@ -114,7 +121,6 @@ const User = {
     }
     else
     {
-      //console.warn("L'adresse mail saisie est invalide !");
       throw "L'adresse mail saisie est invalide !";
     }
   }

@@ -56,5 +56,16 @@ router.get('/:idUser', async (req, res) => {
   }
 });
 
+/* Récupération d'un utilisateur selon son nom d'utilisateur */
+router.get('/username/:username', async (req, res) => {
+  try {
+    const user = await User.getByUsername(req.params.username);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération de l'utilisateur." });
+  }
+});
+
 
 module.exports = router;

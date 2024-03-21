@@ -20,4 +20,8 @@ export class UsersBackService {
     return this.http.get<User>(`${this.apiUrl}/${userId}`);
   }
 
+  getUserByUsername(username : String): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/username/${username}`);
+  }
+
 }
