@@ -12,3 +12,7 @@
 .bouton:hover{
     cursor: pointer;
 }
+
+.click{
+    cursor: pointer;
+}

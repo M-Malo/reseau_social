@@ -13,9 +13,13 @@
             <p class="label">Date de l'évenement</p>
             <input type="date" class="input" [(ngModel)]="event.Date">
         </div>
-        <div class="ajoutImage">
-            <button class="bouton">Ajouter une image</button>
-        </div>
+    </div>
+    <div class="choixImage">
+        <p class="label titreImage">Choix d'une image</p>
+        <img class="image" (click)="selectImage('fete.jpg')" [ngClass]="{'imgSelect': feteSelect === true}" src="../../../assets/images/fete.jpg" alt="">
+        <img class="image" (click)="selectImage('pro.jpg')" [ngClass]="{'imgSelect': proSelect === true}" src="../../../assets/images/pro.jpg" alt="">
+        <img class="image" (click)="selectImage('sport.jpg')" [ngClass]="{'imgSelect': sportSelect === true}" src="../../../assets/images/sport.jpg" alt="">
+        <img class="image" (click)="selectImage('team.jpg')" [ngClass]="{'imgSelect': teamSelect === true}" src="../../../assets/images/team.jpg" alt="">
     </div>
     <div class="desc">
         <p class="label">Description de l'évenement</p>

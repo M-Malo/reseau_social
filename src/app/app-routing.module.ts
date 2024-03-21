@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, canActivate:[AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate:[AuthGuard] },
   { path: 'conversation', component: ConversationComponent, canActivate:[AuthGuard] },
+  { path: 'eventForm/:id', component: EventFormComponent, canActivate:[AuthGuard] },
   { path: 'eventForm', component: EventFormComponent, canActivate:[AuthGuard] },
   { path: 'eventDetail/:id', component: EventViewComponent, canActivate:[AuthGuard] },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },

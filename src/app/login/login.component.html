@@ -3,11 +3,11 @@
         <h1 class="label">Bienvenue sur la page de connecxion de Kwack !</h1>
         <div>
             <p class="label">Login</p>
-            <input class="input" type="text">
+            <input class="inputLogin" type="text">
         </div>
         <div>
             <p class="label">Mot de passe</p>
-            <input class="input" type="text">
+            <input class="inputLogin" type="text">
         </div>
         <div class="connection">
             <button class="bouton" (click)="login()" >Se connecter</button>
@@ -15,36 +15,44 @@
         <div>
             <p class="label">Pas de compte ? <a class="link" (click)="switchMode()">Inscrivez-vous !</a></p>
         </div>
-        <img src="../../assets/images/logo_Kack.png" class="image" alt="">
+        <img src="../../assets/images/logo_Kack.png" class="imageLogin" alt="">
     </div>
-    <div *ngIf="veutCreerCompte">
-        <div class="milieu">
+    <div *ngIf="veutCreerCompte" class="inscription">
+        <div class="gauche">
             <div class="username">
                 <p class="label">Nom d'utilisateur</p>
-                <input class="input" type="text" value="">
+                <input class="input" type="text" [(ngModel)]="newUser.username">
             </div>
             <div class="mail">
                 <p class="label">Adresse mail</p>
-                <input class="input" type="text" value="">
+                <input class="input" type="text" [(ngModel)]="newUser.mail">
             </div>
             <div class="password">
                 <p class="label">Mot de passe</p>
-                <input class="input" type="text" value="">
+                <input class="input" type="text" [(ngModel)]="newUser.password">
             </div>
             <div class="nom">
                 <p class="label">Nom</p>
-                <input class="input" type="text" value="">
+                <input class="input" type="text" [(ngModel)]="newUser.nom">
             </div>
             <div class="prenom">
                 <p class="label">Prénom</p>
-                <input class="input" type="text" value="">
+                <input class="input" type="text" [(ngModel)]="newUser.prenom">
             </div>
             <div class="birthday" id="birthday">
                 <p class="label">Date de naissance</p>
-                <input class="input" type="date" value="">
+                <input class="input" type="date" [(ngModel)]="newUser.dateDeNaissance">
             </div>
         </div>
-        <button class="bouton" (click)="switchMode()">Retour a la page de connection</button>
-        <button class="bouton">Valider l'inscription</button>
+        <div class="boutonInscription">
+            <button class="bouton" style="margin: 8px;" (click)="switchMode()">Retour a la page de connection</button>
+            <button class="bouton" style="margin: 8px;">Valider l'inscription</button>    
+        </div>
+        <div class="selectionPhotos">
+            <img class="image" (click)="selectImage('female1.jpg')" [ngClass]="{'imgSelect': fm1select === true}" src="../../assets/images/female1.jpg" alt="">
+            <img class="image" (click)="selectImage('female2.jpg')" [ngClass]="{'imgSelect': fm2select === true}" src="../../assets/images/female2.jpg" alt="">
+            <img class="image" (click)="selectImage('male1.jpg')" [ngClass]="{'imgSelect': m1select === true}" src="../../assets/images/male1.jpg" alt="">
+            <img class="image" (click)="selectImage('male2.jpg')" [ngClass]="{'imgSelect': m2select === true}" src="../../assets/images/male2.jpg" alt="">
+        </div>
     </div>
 </div>

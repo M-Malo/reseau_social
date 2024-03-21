@@ -2,7 +2,7 @@
     background-color: #17202A;
     height: 100vh;
     display: grid;
-    grid-template-columns: 12% 20% 31% 25% 12%;
+    grid-template-columns: 12% 15% 46% 15% 12%;
     grid-template-rows: 50% 10% 40%;
     margin: -8px;
     overflow: scroll;
@@ -66,4 +66,30 @@
     grid-row-start: 2;
     grid-row-end: 3;
     margin: auto;
+}
+
+.choixImage{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin: 10%;
+}
+
+.image{
+    width: 38%;
+    margin: 3%;
+    height: auto;
+    cursor: pointer;
+}
+
+.titreImage{
+    display: flex;
+    justify-content: center;
+}
+
+.imgSelect{
+    border: 10px solid #4BA0EC;
+    box-sizing: border-box; 
+    border-radius: 5px;
 }
