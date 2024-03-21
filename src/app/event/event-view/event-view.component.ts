@@ -13,7 +13,7 @@ export class EventViewComponent {
   id: string = "0";
   listeFavoris: string[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private eventBackservice: EventsBackService) {
     this.listeFavoris = ["Sharigan","M-Malo","Bernardo","Djamel"]
   }
 
