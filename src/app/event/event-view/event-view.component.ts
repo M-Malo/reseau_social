@@ -24,6 +24,12 @@ export class EventViewComponent {
     this.getEvent();
   }
 
+  navigate(){
+    let url = "/eventForm"
+    this.router.navigateByUrl(url);
+    this.router.navigate([url,this.id]);
+  }
+
   getEvent() {
 
     this.eventBackservice.getEventById(this.id).subscribe(
