@@ -54,4 +54,23 @@ export class AccueilComponent{
     this.router.navigateByUrl(url);
     this.router.navigate([url, idEvent]);
   }
+
+  idEventToTheme(idEvent:number){
+    let theme = 'Autre'
+    switch (idEvent) {
+      case 0:
+        theme = 'Sport'
+        break;
+      case 1:
+        theme = 'Culture'
+        break;
+      case 2:
+        theme = 'Festif'
+        break;
+      case 3:
+        theme = 'Pro'
+        break;
+    }
+    return theme
+  }
 }

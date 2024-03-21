@@ -27,9 +27,9 @@
                     <p>{{event.nom}}</p>
                 </div>
                 <div class="resteInfoEvent">
-                    <img src="../../../assets/images/poolparty.jpg" alt="" class="imageEvent">
+                    <img src="{{event.image}}" alt="" class="imageEvent">
                     <div class="label infoEvent">
-                        <p>{{event.theme}}</p>
+                        <p>{{idEventToTheme(event.theme)}}</p>
                         <p>{{event.date_event}}</p>
                         <p>{{event.prix}}€</p>
                     </div>

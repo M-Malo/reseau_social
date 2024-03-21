@@ -28,12 +28,15 @@
     <div class="themes">
         <form class="label">
             <p class="label">Thème de l'évenement</p>
-            <label><input type="radio" name="tri" value="0">Sport</label><br>
-            <label><input type="radio" name="tri" value="1">Culture</label><br>
-            <label><input type="radio" name="tri" value="2">Festif</label><br>
-            <label><input type="radio" name="tri" value="3">Pro</label><br>
-            <label><input type="radio" name="tri" value="4">Autre</label><br>
+            <label><input type="radio" name="tri" value="0" [checked]="event.theme === 0" (change)="selectTheme(0)">Sport</label><br>
+            <label><input type="radio" name="tri" value="1" [checked]="event.theme === 1" (change)="selectTheme(1)">Culture</label><br>
+            <label><input type="radio" name="tri" value="2" [checked]="event.theme === 2" (change)="selectTheme(2)">Festif</label><br>
+            <label><input type="radio" name="tri" value="3" [checked]="event.theme === 3" (change)="selectTheme(3)">Pro</label><br>
+            <label><input type="radio" name="tri" value="4" [checked]="event.theme === 4" (change)="selectTheme(4)">Autre</label><br>
         </form>     
     </div>
-    <button class="publication bouton" (click)="submitEvent()">Publier l'évenement</button>
+    <div class="publication">
+        <button *ngIf="!edition" class="bouton" (click)="submitEvent()">Publier l'évenement</button>
+        <button *ngIf="edition" class="bouton" (click)="updateEvent()">Modifier l'évenement</button>
+    </div>
 </div>

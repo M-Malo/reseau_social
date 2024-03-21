@@ -17,6 +17,10 @@ export class EventsBackService {
     return this.http.post<any>(`${this.apiUrl}/new`, eventData);
   }
 
+  updateEvent(eventData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/update/${eventData._id}`, eventData);
+  }
+
   getEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.apiUrl}`);
   }

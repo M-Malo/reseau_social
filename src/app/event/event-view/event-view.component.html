@@ -13,7 +13,12 @@
         </div>
         <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
         <div class="favoris">
+            <p class="label">Ajouté en favoris par :</p>
             <li *ngFor="let fav of listeFavoris" class="label">{{fav}}</li>
+        </div>
+        <div class="boutonfavoris">
+            <button class="bouton">Ajouter au favoris</button>
+            <button class="bouton suppr">Supprimer des favoris</button>
         </div>
     </div>
 </div>

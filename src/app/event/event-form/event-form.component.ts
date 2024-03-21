@@ -9,9 +9,27 @@ import { Event } from 'src/app/model/event';
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent {
-  event = new Event("eventId", "65fadeacb1072c2526f04e82","",0,"",0,"2024-02-28","")
+  event = new Event("65fadeacb1072c2526f04e81", "65fadeacb1072c2526f04e82","",0,"",0,"2024-02-28","")
+  edition = false
 
   constructor(private eventsBackService: EventsBackService, private route: ActivatedRoute) { }
+
+  id = ""
+  feteSelect = false
+  proSelect = false
+  teamSelect = false
+  sportSelect = false
+
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.id = params['id'];
+        this.getEventById(this.id)
+        this.edition = true
+      }
+    });
+  }
 
   submitEvent() {
     console.log(this.event);
@@ -26,21 +44,18 @@ export class EventFormComponent {
       }
     );
   }
-  id = ""
-  feteSelect = false
-  proSelect = false
-  teamSelect = false
-  sportSelect = false
 
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      if (params['id']) {
-        this.id = params['id'];
-        //GetEventById
-        this.event = new Event(this.id,"","Pizza party",1,"../../assets/images/team.jpg",4,"2024-05-25","Pizza toute la night et console avec les boys")
+  updateEvent() {
+    this.eventsBackService.updateEvent(this.event).subscribe(
+      () => {
+        console.log("L'événement a été édité avec succès.");
+        // Réinitialiser le formulaire après l'ajout réussi
+        this.event = new Event("", "","",0,"",0,"2024-02-28","");
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de l\'édition de l\'événement :', error);
       }
-    });
+    );
   }
 
   selectImage(image:string){
@@ -65,6 +80,24 @@ export class EventFormComponent {
         this.teamSelect = true
         break;
     }
+  }
+
+  getEventById(id:string) {
+
+    this.eventsBackService.getEventById(id).subscribe(
+      (event: Event) => {
+        console.log(this.event);
+        this.event = event
+        this.selectImage(this.event.image.split('/')[4]);
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+      }
+    );
+  }
+
+  selectTheme(idTheme:number) {
+    this.event.theme = idTheme
   }
   
 

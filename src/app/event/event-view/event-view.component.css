@@ -81,3 +81,17 @@
     display: flex;
     flex-direction: column;
 }
+
+.boutonfavoris{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+}
+
+.suppr{
+    margin-top: 10%;
+}
