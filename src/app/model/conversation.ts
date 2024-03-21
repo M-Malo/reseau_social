@@ -1,14 +1,12 @@
 
 export class Conversation {
-    idConversation: number;
-    idUser1: number;
-    idUser2: number;
+    _id: number;
+    id_user1: number;
+    id_user2: number;
 
-    constructor(idConversation: number, idUser1: number, idUser2: number) {
-        this.idConversation = idConversation;
-        this.idUser1 = idUser1;
-        this.idUser2 = idUser2;
+    constructor(_id: number, id_user1: number, id_user2: number) {
+        this._id = _id;
+        this.id_user1 = id_user1;
+        this.id_user2 = id_user2;
     }
-
-    
 }

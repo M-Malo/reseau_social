@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
+import { UsersBackService } from '../users-back.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { User } from '../model/user';
 })
 export class LoginComponent {
   veutCreerCompte = false
-  newUser = new User("","","","","","","2000-01-01","",false)
+  user = new User("65fadeacb1072c2526f04e82", "", "", "", "", "", "", false, "");
 
   fm1select = false
   fm2select = false
@@ -18,7 +19,7 @@ export class LoginComponent {
   m2select = false
 
 
-  constructor(private authService: AuthService,private router: Router) {
+  constructor(private authService: AuthService,private router: Router, private usersBackService: UsersBackService) {
     
   }
   switchMode(){
@@ -32,9 +33,24 @@ export class LoginComponent {
     this.router.navigate([url]);
   }
 
+
+  submitUser() {
+    console.log(this.user);
+    this.usersBackService.addUser(this.user).subscribe(
+      () => {
+        console.log("L'utilisateur a été ajouté avec succès.");
+        // Réinitialiser le formulaire après l'ajout réussi
+        this.user = new User("65fadeacb1072c2526f04e82", "", "", "", "", "", "", false, "");
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
+      }
+    );
+  }
+
   selectImage(image:string){
     let source = "../../assets/images/"+image
-    this.newUser.image = source
+    this.user.image = source
     this.fm1select = false
     this.fm2select = false
     this.m1select = false

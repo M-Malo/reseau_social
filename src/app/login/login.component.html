@@ -21,32 +21,32 @@
         <div class="gauche">
             <div class="username">
                 <p class="label">Nom d'utilisateur</p>
-                <input class="input" type="text" [(ngModel)]="newUser.username">
+                <input class="input" type="text" value="" [(ngModel)]="user.nom_utilisateur">
             </div>
             <div class="mail">
                 <p class="label">Adresse mail</p>
-                <input class="input" type="text" [(ngModel)]="newUser.mail">
+                <input class="input" type="text" value="" [(ngModel)]="user.mail">
             </div>
             <div class="password">
                 <p class="label">Mot de passe</p>
-                <input class="input" type="text" [(ngModel)]="newUser.password">
+                <input class="input" type="text" value="" [(ngModel)]="user.mdp">
             </div>
             <div class="nom">
                 <p class="label">Nom</p>
-                <input class="input" type="text" [(ngModel)]="newUser.nom">
+                <input class="input" type="text" value="" [(ngModel)]="user.nom">
             </div>
             <div class="prenom">
                 <p class="label">Prénom</p>
-                <input class="input" type="text" [(ngModel)]="newUser.prenom">
+                <input class="input" type="text" value="" [(ngModel)]="user.prenom">
             </div>
             <div class="birthday" id="birthday">
                 <p class="label">Date de naissance</p>
-                <input class="input" type="date" [(ngModel)]="newUser.dateDeNaissance">
+                <input class="input" type="date" value="" [(ngModel)]="user.date_naissance">
             </div>
         </div>
         <div class="boutonInscription">
             <button class="bouton" style="margin: 8px;" (click)="switchMode()">Retour a la page de connection</button>
-            <button class="bouton" style="margin: 8px;">Valider l'inscription</button>    
+            <button class="bouton" (click)="submitUser()" style="margin: 8px;">Valider l'inscription</button>    
         </div>
         <div class="selectionPhotos">
             <img class="image" (click)="selectImage('female1.jpg')" [ngClass]="{'imgSelect': fm1select === true}" src="../../assets/images/female1.jpg" alt="">

@@ -1,17 +1,17 @@
 
 export class Message {
-    idMessage: number;
-    idConversation: number;
-    idUser: number;
+    _id: number;
+    id_conversation: number;
+    id_user: number;
     contenu: string;
-    date: string;
+    date_envoi: string;
 
-    constructor(idMessage: number, idConversation: number, idUser: number, contenu:string, date: string) {
-        this.idMessage = idMessage;
-        this.idConversation = idConversation;
-        this.idUser = idUser;
+    constructor(_id: number, id_conversation: number, id_user: number, contenu:string, date_envoi: string) {
+        this._id = _id;
+        this.id_conversation = id_conversation;
+        this.id_user = id_user;
         this.contenu = contenu;
-        this.date = date;
+        this.date_envoi = date_envoi;
 
     }
 

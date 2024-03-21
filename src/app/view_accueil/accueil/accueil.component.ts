@@ -1,35 +1,59 @@
 import { Component } from '@angular/core';
 import { Event } from '../../model/event';
 import { Router } from '@angular/router';
+import { EventsBackService } from 'src/app/events-back.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
 })
-export class AccueilComponent {
+export class AccueilComponent{
   userConnected: string = "M-Malo"
   eventList: Event[] = []
   prixMax = 50
-  prixFiltre:number = 0
+  // prixFiltre:number = 0
+  // nomEvent:string = ""
+  // theme:number = 0
+  filtre = {prixMaxEvent: 0, nomEvent: "", themeEvent: null}
 
-  constructor(private router: Router) {
-    let event1:Event = new Event(0,0,"Pool party",2,"none",10,"2024-04-04","Ca va venir a la piscine ou quoi")
-    let event2:Event = new Event(1,1,"bowling",2,"none",25,"2023-05-25","Ca va venir a la bowling ou quoi")
-    this.eventList.push(event1)
-    this.eventList.push(event2)
-    this.eventList.push(event1)
-    this.eventList.push(event2)
+
+  constructor(private eventBackservice: EventsBackService, private router: Router) {
+
+    this.getEvents();
+  }
+
+  getEvents() {
+
+    this.eventBackservice.getEvents().subscribe(
+      (events: Event[]) => {
+        this.eventList = events;
+        console.log(this.eventList);
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+      }
+    );
   }
 
   appliquerFiltre(){
-    this.prixMax = this.prixFiltre
+    console.log(this.filtre);
+    // this.eventBackservice.getEventsFiltred(this.filtre).subscribe(
+    //   (events: Event[]) => {
+    //     this.eventList = events;
+    //     console.log(this.eventList);
+    //   },
+    //   (error) => {
+    //     console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+    //   }
+    // );
   }
 
-  navigateTo(idEvent: number) {
+  navigateTo(idEvent: string) {
     const url = "eventDetail"
-    const id = String(idEvent)
     this.router.navigateByUrl(url);
-    this.router.navigate([url, id]);
+    this.router.navigate([url, idEvent]);
   }
 }
