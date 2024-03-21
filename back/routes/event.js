@@ -16,7 +16,7 @@ router.post('/new', async (req, res) => {
       req.body.description
     )
       .then(console.log);
-    res.status(200).send("L'évènement a été ajouté avec succès.");
+    res.status(200).json({ message: "L'évènement a été ajouté avec succès." });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de l'ajout de l'évènement." });
@@ -37,7 +37,7 @@ router.post('/update/:idEvent', (req, res) => {
       req.body.description
     )
       .then(console.log);
-    res.status(200).send("L'évènement a été mis à jour avec succès.");
+    res.status(200).json({ message: "L'évènement a été mis à jour avec succès."});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de la mise à jour de l'évènement." });
@@ -49,6 +49,23 @@ router.get('/', async (req, res) => {
 
   try {
     const event = await Event.getAll();
+    res.json(event);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des évènements." });
+  }
+});
+
+
+/* Récupération de l'ensemble des évènements selon le filtrage selectionné */
+router.post('/filtre', async (req, res) => {
+
+  try {
+    const event = await Event.getByFiltre(
+      req.body.prixMaxEvent,
+      req.body.themeEvent,
+      req.body.nomEvent
+    );
     res.json(event);
   } catch (error) {
     console.error(error);
@@ -87,7 +104,7 @@ router.post('/delete/:idEvent', async (req, res) => {
   try {
     Event.deleteById(req.params.idEvent)
       .then(console.log);
-    res.status(200).send("L'évènement a été supprimé avec succès.");
+    res.status(200).json({ message: "L'évènement a été supprimé avec succès."});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de la suppression de l'évènement." });

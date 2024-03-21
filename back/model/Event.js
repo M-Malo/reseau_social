@@ -68,6 +68,14 @@ const Event  = {
       });
   },
 
+  getByFiltre : async function(priceMax, eventName, eventTheme) {
+    return this.getAll()
+      .then(events => {
+        return events.filter(event => event.price <= priceMax)
+          .filter(event => event.name === eventName)
+          .filter(event => event.theme === eventTheme);
+      });
+  },
 
   getByName : async function(eventName) {
 

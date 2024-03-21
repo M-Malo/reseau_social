@@ -10,7 +10,7 @@ router.post('/new', async (req, res) => {
     await Conversation.addConversation(
       req.body.id_user1,
       req.body.id_user2);
-    res.status(200).send("La conversation a été créée avec succès.");
+    res.status(200).json({ message: "La conversation a été créée avec succès."});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de la création de la conversation." });

@@ -12,6 +12,8 @@ const favoriRouter = require(path.join(__dirname, "routes/favori.js"));
 const conversationRouter = require(path.join(__dirname, "routes/conversation.js"));
 const messageRouter = require(path.join(__dirname, "routes/message.js"));
 
+app.use(express.json());
+
 app.use(morgan('tiny'));
 
 app.use(express.urlencoded({ extended: true }));

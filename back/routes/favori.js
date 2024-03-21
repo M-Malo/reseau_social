@@ -10,7 +10,7 @@ router.post('/new', async (req, res) => {
       req.body.id_event,
       req.body.id_user)
       .then(console.log);
-    res.status(200).send("Le favori a été créé avec succès.");
+    res.status(200).json({ message: "Le favori a été créé avec succès."});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de la création du favori." });
