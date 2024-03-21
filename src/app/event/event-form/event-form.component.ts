@@ -26,7 +26,7 @@ export class EventFormComponent {
       }
     );
   }
-  id = -1
+  id = ""
   feteSelect = false
   proSelect = false
   teamSelect = false
@@ -38,7 +38,7 @@ export class EventFormComponent {
       if (params['id']) {
         this.id = params['id'];
         //GetEventById
-        this.event = new Event(this._id,0,"Pizza party",1,"../../assets/images/team.jpg",4,"2024-05-25","Pizza toute la night et console avec les boys")
+        this.event = new Event(this.id,"","Pizza party",1,"../../assets/images/team.jpg",4,"2024-05-25","Pizza toute la night et console avec les boys")
       }
     });
   }
