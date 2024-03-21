@@ -7,12 +7,14 @@ import { ConversationComponent } from './view_conversation/conversation/conversa
 import { EventFormComponent } from './event/event-form/event-form.component';
 import { EventViewComponent } from './event/event-view/event-view.component';
 import { AuthGuard } from './guard.service';
+import { ChatComponent } from './view_conversation/chat/chat.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent, canActivate:[AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate:[AuthGuard] },
   { path: 'conversation', component: ConversationComponent, canActivate:[AuthGuard] },
+  { path: 'conversation/:id', component: ChatComponent, canActivate:[AuthGuard] },
   { path: 'eventForm/:id', component: EventFormComponent, canActivate:[AuthGuard] },
   { path: 'eventForm', component: EventFormComponent, canActivate:[AuthGuard] },
   { path: 'eventDetail/:id', component: EventViewComponent, canActivate:[AuthGuard] },

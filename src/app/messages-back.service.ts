@@ -15,4 +15,8 @@ export class MessagesBackService {
   getMessagesByConversation(conversationId : String): Observable<Message[]> {
     return this.http.get<Message[]>(`${this.apiUrl}/${conversationId}`);
   }
+  
+  addMessage(messageData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${messageData.id_conversation}/new`, messageData);
+  }
 }

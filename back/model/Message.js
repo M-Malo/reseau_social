@@ -72,7 +72,8 @@ const Message  = {
   },
 
   getByConversation : async function(conversationIdStr) {
-
+    console.log("debut getByConversation");
+    console.log(conversationIdStr);
     return this.getAll()
       .then(messages => {
         return messages.filter(message => message.id_conversation.toString() === conversationIdStr);
@@ -88,8 +89,6 @@ const Message  = {
     let messageId = new ObjectId(messageIdStr);
     await messagesCollection.deleteOne({_id: messageId});
   },
-
-
 }
 
 module.exports = Message;

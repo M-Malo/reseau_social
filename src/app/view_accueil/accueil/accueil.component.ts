@@ -16,8 +16,6 @@ export class AccueilComponent{
   themeEvent: string = "-1";
   prixMaxEvent = 50;
   nomEvent = "";
-  //filtres = {prixMaxEvent: 50, nomEvent: "", themeEvent: -1}
-
 
   constructor(private eventBackservice: EventsBackService, private router: Router) {
     this.getEvents();
