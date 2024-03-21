@@ -1,7 +1,6 @@
 .background {
     background-color: #17202A;
     height: 100vh;
-    display: grid;
     margin: -8px;
     overflow: scroll;
 }
@@ -65,4 +64,13 @@
     border-radius: 30px;
     background-color: #4BA0EC;
     border: none;
+}
+
+.favoris{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: #283340;
+    border-radius: 15px;
 }

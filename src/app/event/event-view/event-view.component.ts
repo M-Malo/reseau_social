@@ -10,8 +10,11 @@ import { Event } from 'src/app/model/event';
 export class EventViewComponent {
   event = new Event(0,0,"Anniversaire",3,"../../../assets/images/poolparty.jpg",5,"2024-02-28","Salut Salut, on va feter mon anniv à la casa avec les copaings, Venez nombreux cela va etre sper sympas. N’oubliez pas de venir avec un SAM")
   id: string = "0";
+  listeFavoris: string[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.listeFavoris = ["Sharigan","M-Malo","Bernardo","Djamel"]
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

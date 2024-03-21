@@ -12,5 +12,8 @@
             <p class="label">{{event.Theme}} - 28/02/2024 - {{event.Prix}}€</p>
         </div>
         <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
+        <div class="favoris">
+            <li *ngFor="let fav of listeFavoris">{{fav}}</li>
+        </div>
     </div>
 </div>
