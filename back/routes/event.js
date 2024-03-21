@@ -58,14 +58,15 @@ router.get('/', async (req, res) => {
 
 
 /* Récupération de l'ensemble des évènements selon le filtrage selectionné */
-router.post('/filtre', async (req, res) => {
-
+router.get('/filtre/:prix/:nom/:theme', async (req, res) => {
+  console.log(req.params.prix, req.params.nom, req.params.theme);
   try {
     const event = await Event.getByFiltre(
-      req.body.prixMaxEvent,
-      req.body.themeEvent,
-      req.body.nomEvent
+      Number(req.params.prix),
+      req.params.nom != '-1' ? req.params.nom : null,
+      req.params.theme != '-1' ? Number(req.params.theme) : null
     );
+    //res.json(event);
     res.json(event);
   } catch (error) {
     console.error(error);

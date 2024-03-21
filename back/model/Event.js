@@ -68,13 +68,28 @@ const Event  = {
       });
   },
 
-  getByFiltre : async function(priceMax, eventName, eventTheme) {
-    return this.getAll()
-      .then(events => {
-        return events.filter(event => event.price <= priceMax)
-          .filter(event => event.name === eventName)
-          .filter(event => event.theme === eventTheme);
-      });
+  getByFiltre: async function (priceMax, eventName, eventTheme) {
+
+    // Filtrage des événements en fonction des critères
+    let filteredEvents = this.getAll() .then(
+      events => {
+        return events.filter(event => {
+          // Filtrer par prix maximal si le prix maximum est défini
+          if (priceMax && event.prix > priceMax) {
+            return false;
+          }
+          // Filtrer par nom d'événement si le nom est défini
+          if (eventName && event.nom.toString() !== eventName) {
+            return false;
+          }
+          // Filtrer par thème d'événement si le thème est défini
+          if (eventTheme && event.theme !== eventTheme) {
+            return false;
+          }
+          return true;
+    })});
+  
+    return filteredEvents;
   },
 
   getByName : async function(eventName) {
@@ -82,30 +97,6 @@ const Event  = {
     return this.getAll()
       .then(events => {
         return events.filter(event => event.name === eventName);
-      });
-  },
-
-  getByPriceMax : async function(priceMax) {
-
-    return this.getAll()
-      .then(events => {
-        return events.filter(event => event.price <= priceMax);
-      });
-  },
-
-  getByPriceMin : async function(priceMin) {
-
-    return this.getAll()
-      .then(events => {
-        return events.filter(event => event.price >= priceMin);
-      });
-  },
-
-  getByTheme : async function(eventTheme) {
-
-    return this.getAll()
-      .then(events => {
-        return events.filter(event => event.theme === eventTheme);
       });
   },
 

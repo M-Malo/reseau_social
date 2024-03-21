@@ -21,9 +21,26 @@ export class EventsBackService {
     return this.http.get<Event[]>(`${this.apiUrl}`);
   }
 
-  getEventsFiltred(filtres: any): Observable<Event[]> {
-    return this.http.post<Event[]>(`${this.apiUrl}/filtre`, filtres);
+  getEventsFiltred(prix: number, nom: string, theme: string): Observable<Event[]> {
+    let url = `${this.apiUrl}/filtre/${prix}/`;
+  
+    // Ajouter le paramètre nomEvent s'il est renseigné, passer à -1 sinon
+    if (nom) {
+      url += `${nom}/`;
+    } else {
+      url += `-1/`; 
+    }
+  
+    // Ajouter le paramètre themeEvent s'il est renseigné, passer à -1 sinon
+    if (theme) {
+      url += `${theme}`;
+    } else {
+      url += `-1`;
+    }
+  
+    return this.http.get<Event[]>(url);
   }
+  
 
   getEventById(eventId : String): Observable<Event> {
     return this.http.get<Event>(`${this.apiUrl}/${eventId}`);

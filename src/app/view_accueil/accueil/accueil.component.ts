@@ -11,17 +11,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent{
-  userConnected: string = "M-Malo"
-  eventList: Event[] = []
-  prixMax = 50
-  // prixFiltre:number = 0
-  // nomEvent:string = ""
-  // theme:number = 0
-  filtre = {prixMaxEvent: 0, nomEvent: "", themeEvent: null}
+  userConnected: string = "M-Malo";
+  eventList: Event[] = [];
+  themeEvent: string = "-1";
+  prixMaxEvent = 50;
+  nomEvent = "";
+  //filtres = {prixMaxEvent: 50, nomEvent: "", themeEvent: -1}
 
 
   constructor(private eventBackservice: EventsBackService, private router: Router) {
-
     this.getEvents();
   }
 
@@ -38,17 +36,17 @@ export class AccueilComponent{
     );
   }
 
-  appliquerFiltre(){
-    console.log(this.filtre);
-    // this.eventBackservice.getEventsFiltred(this.filtre).subscribe(
-    //   (events: Event[]) => {
-    //     this.eventList = events;
-    //     console.log(this.eventList);
-    //   },
-    //   (error) => {
-    //     console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
-    //   }
-    // );
+  appliquerFiltre() {
+
+    // Appel du service pour récupérer les événements filtrés
+    this.eventBackservice.getEventsFiltred(this.prixMaxEvent, this.nomEvent, this.themeEvent).subscribe(
+      (events: Event[]) => {
+        this.eventList = events;
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération des événements filtrés:', error);
+      }
+    );
   }
 
   navigateTo(idEvent: string) {
