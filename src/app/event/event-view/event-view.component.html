@@ -2,14 +2,14 @@
 <div class="background">
     <div class="container">
         <div class="nom">
-            <p class="label"><b>{{event.Nom}}</b></p>
+            <p class="label"><b>{{event.nom}}</b></p>
         </div>
         <div class="description">
-            <p class="label">{{event.Description}}</p>
+            <p class="label">{{event.description}}</p>
         </div>
-        <img class="image" src="{{event.Image}}" alt="">
+        <img class="image" src="{{event.image}}" alt="">
         <div class="info">
-            <p class="label">{{event.Theme}} - 28/02/2024 - {{event.Prix}}€</p>
+            <p class="label">{{event.theme}} - {{event.date_event}} - {{event.prix}}€</p>
         </div>
         <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
     </div>

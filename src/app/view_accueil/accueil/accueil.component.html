@@ -18,20 +18,20 @@
             </div>
         </div>
         <div class="colonneEvent">
-            <div *ngFor="let event of eventList" class="event click" (click)='navigateTo(event.IdEvent)'>
+            <div *ngFor="let event of eventList" class="event click" (click)='navigateTo(event._id)'>
                 <div class="infoProfil">
                     <img class="imageProfil" src="../../../assets/images/poolparty.jpg" alt="">
                     <p class="label">M-Malo</p>
                 </div>
                 <div class="titreEvent label">
-                    <p>{{event.Nom}}</p>
+                    <p>{{event.nom}}</p>
                 </div>
                 <div class="resteInfoEvent">
                     <img src="../../../assets/images/poolparty.jpg" alt="" class="imageEvent">
                     <div class="label infoEvent">
-                        <p>{{event.Theme}}</p>
-                        <p>28-02-2024</p>
-                        <p>{{event.Prix}}€</p>
+                        <p>{{event.theme}}</p>
+                        <p>{{event.date_event}}</p>
+                        <p>{{event.prix}}€</p>
                     </div>
                 </div>
             <hr class="ligneHorizon">
@@ -44,20 +44,20 @@
             <hr class="ligneHorizon">
             <div>
                 <p>Prix max = {{prixMax}}</p>
-                <input type="range" min="0" max="100" (ngModel)="prixFiltre">
+                <input type="range" min="0" max="100" (ngModel)="filtre.prixMaxEvent">
             </div>
             <div>
                 <p>Recherche par mot clé</p>
-                <input type="text" placeholder="Tapez un mot clé">
+                <input type="text" placeholder="Tapez un mot clé" (ngModel)="filtre.nomEvent">
             </div>
             <div>
                 <p>Themes</p>
-                <select name="choix" id="choix" class="inputTheme">
-                    <option value="0">Sport</option>
-                    <option value="1">Culture</option>
-                    <option value="2">Festif</option>
-                    <option value="3">Pro</option>
-                    <option value="4">Autre</option>
+                <select name="choix" id="choix" class="inputTheme" (ngModel)="filtre.themeEvent">
+                    <option value=0>Sport</option>
+                    <option value=1>Culture</option>
+                    <option value=2>Festif</option>
+                    <option value=3>Pro</option>
+                    <option value=4>Autre</option>
                 </select>
             </div>
             <hr class="ligneHorizon">
