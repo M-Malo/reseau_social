@@ -73,4 +73,11 @@
     grid-row-end: 4;
     background-color: #283340;
     border-radius: 15px;
+    list-style-position: inside;
+    text-align: left;
+    padding: 15px;
+    max-width: 250px;
+    margin: 15%;
+    display: flex;
+    flex-direction: column;
 }
