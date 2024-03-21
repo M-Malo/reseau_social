@@ -11,7 +11,7 @@ import { UsersBackService } from '../users-back.service';
 })
 export class LoginComponent {
   veutCreerCompte = false
-  user = new User("65fadeacb1072c2526f04e82", "", "", "", "", "", "", false, "");
+  user = new User("", "", "", "", "", "", "", false, "");
 
   fm1select = false
   fm2select = false
@@ -40,7 +40,7 @@ export class LoginComponent {
       () => {
         console.log("L'utilisateur a été ajouté avec succès.");
         // Réinitialiser le formulaire après l'ajout réussi
-        this.user = new User("65fadeacb1072c2526f04e82", "", "", "", "", "", "", false, "");
+        this.user = new User("", "", "", "", "", "", "", false, "");
       },
       (error) => {
         console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
