@@ -16,3 +16,7 @@
 .click{
     cursor: pointer;
 }
+
+.erreurInput{
+    border: 5px solid red !important;
+}
