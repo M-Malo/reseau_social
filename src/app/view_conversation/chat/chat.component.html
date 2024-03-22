@@ -4,16 +4,16 @@
     <div class="container">
         <div class="messages">
             <!-- Affichage des messages -->
-            <div *ngFor="let message of messages" class="message">
+            <div *ngFor="let message of messages" class="message label">
                 <div class="user">{{ message.name_user }}</div>
                 <div class="text">{{ message.contenu }}</div>
             </div>
         </div>
 
-        <div class="input">
+        <div class="envoyerMessage">
             <!-- Formulaire pour envoyer un nouveau message -->
-            <input type="text" placeholder="Entrer un message" [(ngModel)]="newMessageText" />
-            <button (click)="sendMessage()">Envoyer</button>
+            <input class="input" type="text" placeholder="Entrer un message" [(ngModel)]="newMessageText" />
+            <button class="bouton" (click)="sendMessage()">Envoyer</button>
         </div>
     </div>
 </div>

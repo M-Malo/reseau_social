@@ -49,6 +49,7 @@ export class LoginComponent {
           console.log("L'utilisateur a été ajouté avec succès.");
           // Réinitialiser le formulaire après l'ajout réussi
           this.user = new User("", "", "", "", "", "", "", false, "");
+          this.switchMode()
         },
         (error) => {
           console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
