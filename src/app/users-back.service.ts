@@ -24,4 +24,8 @@ export class UsersBackService {
     return this.http.get<User>(`${this.apiUrl}/username/${username}`);
   }
 
+  async updateUser(userData : User): Promise<Observable<User>> {
+    return this.http.post<User>(`${this.apiUrl}/update/${userData._id}`, userData);
+  }
+
 }

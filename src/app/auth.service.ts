@@ -4,7 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = false; // Variable pour suivre l'état d'authentification
+
+  isLoggedIn = new Boolean
+
+  constructor(){
+    let userId: string = JSON.stringify(localStorage.getItem("userId")).split('"')[1]
+    if(userId){   //l'utilisateur est toujours connecté
+      this.isLoggedIn = true;
+    }else {
+      this.isLoggedIn = false;
+    }
+  }
 
   login() {
     this.isLoggedIn = true;
