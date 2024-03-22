@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Event } from '../../model/event';
 import { Router } from '@angular/router';
 import { EventsBackService } from 'src/app/events-back.service';
-import { HttpClient } from '@angular/common/http';
 import { UsersBackService } from 'src/app/users-back.service';
 import { User } from 'src/app/model/user';
 
@@ -32,7 +31,6 @@ export class AccueilComponent{
 
     (await this.eventBackservice.getEvents()).subscribe(
       async (events: Event[]) => {
-        this.eventList = events;
         await this.updateInfosEvent(events);
         console.log(this.eventList);
       },

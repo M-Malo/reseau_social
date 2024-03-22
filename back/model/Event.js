@@ -116,16 +116,16 @@ const Event  = {
     await eventsCollection.deleteOne({_id: eventId});
   },
 
-  sortByPrice: async function(conversationIdStr) {
-    return this.getAll().sort((a, b) => {
+  sortByPrice: async function(events) {
+    return events.sort((a, b) => {
       if (a > b) return -1; // -1 pour trier dans l'ordre décroissant
       if (a < b) return 1;
       return 0;
     });
   },
 
-  sortByDate: async function(conversationIdStr) {
-    return this.getAll().sort((a, b) => {
+  sortByDate: async function(events) {
+    return events.sort((a, b) => {
       const dateA = this.convertStringToDate(a.date_envoi);
       const dateB = this.convertStringToDate(b.date_envoi);
 
