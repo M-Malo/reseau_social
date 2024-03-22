@@ -1,4 +1,3 @@
-import { Optional } from "@angular/core";
 import { User } from "./user";
 import { Message } from "./message";
 
