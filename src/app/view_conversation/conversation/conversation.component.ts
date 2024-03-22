@@ -35,7 +35,7 @@ export class ConversationComponent {
         console.log(this.conversationListe);
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        console.error('Une erreur s\'est produite lors de la récupération des conversations :', error);
       }
     );
   }
@@ -52,12 +52,12 @@ export class ConversationComponent {
               this.conversationListe.push(conversation);
             },
             (error) => {
-              console.error('Une erreur s\'est produite lors de la récupération des événements :', error);        
+              console.error('Une erreur s\'est produite lors de la récupération de l\'utilisateur :', error);        
             }
           );
         },
         (error) => {
-          console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+          console.error('Une erreur s\'est produite lors de la récupération de la conversation :', error);
         }
       );
     }

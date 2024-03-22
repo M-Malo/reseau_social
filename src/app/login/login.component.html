@@ -1,6 +1,6 @@
 <div class="background">
     <div *ngIf="!veutCreerCompte" class="container">
-        <h1 class="label">Bienvenue sur la page de connecxion de Kwack !</h1>
+        <h1 class="label">Bienvenue sur la page de connexion de Kwack !</h1>
         <div>
             <p class="label">Login</p>
             <input class="inputLogin" type="text" [(ngModel)]="identifitant">
@@ -21,27 +21,27 @@
         <div class="gauche">
             <div class="username">
                 <p class="label">Nom d'utilisateur</p>
-                <input class="input" type="text" value="" [(ngModel)]="user.nom_utilisateur">
+                <input class="input" type="text" value="" [(ngModel)]="user.nom_utilisateur" [ngClass]="{'erreurInput': erreurUsername === true}">
             </div>
             <div class="mail">
                 <p class="label">Adresse mail</p>
-                <input class="input" type="text" value="" [(ngModel)]="user.mail">
+                <input class="input" type="text" value="" [(ngModel)]="user.mail" [ngClass]="{'erreurInput': erreurMail === true}">
             </div>
             <div class="password">
                 <p class="label">Mot de passe</p>
-                <input class="input" type="text" value="" [(ngModel)]="user.mdp">
+                <input class="input" type="text" value="" [(ngModel)]="user.mdp" [ngClass]="{'erreurInput': erreurMdp === true}">
             </div>
             <div class="nom">
                 <p class="label">Nom</p>
-                <input class="input" type="text" value="" [(ngModel)]="user.nom">
+                <input class="input" type="text" value="" [(ngModel)]="user.nom" [ngClass]="{'erreurInput': erreurNom === true}">
             </div>
             <div class="prenom">
                 <p class="label">Prénom</p>
-                <input class="input" type="text" value="" [(ngModel)]="user.prenom">
+                <input class="input" type="text" value="" [(ngModel)]="user.prenom" [ngClass]="{'erreurInput': erreurPrenom === true}">
             </div>
             <div class="birthday" id="birthday">
                 <p class="label">Date de naissance</p>
-                <input class="input" type="date" value="" [(ngModel)]="user.date_naissance">
+                <input class="input" type="date" value="" [(ngModel)]="user.date_naissance" [ngClass]="{'erreurInput': erreurDateDeNaissance === true}">
             </div>
         </div>
         <div class="boutonInscription">

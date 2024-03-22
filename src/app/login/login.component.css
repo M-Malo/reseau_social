@@ -83,3 +83,8 @@
 .imgSelect{
     border-radius: 50%;
 }
+
+.erreurInput{
+    border: 5px solid red;
+    z-index: 1000;
+}

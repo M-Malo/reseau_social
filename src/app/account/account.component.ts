@@ -42,7 +42,7 @@ export class AccountComponent {
         console.log(this.utilisateur);
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        console.error('Une erreur s\'est produite lors de la récupération des utilisateurs :', error);
       }
     );
   }
@@ -70,7 +70,7 @@ export class AccountComponent {
         localStorage.setItem("username", this.utilisateur.nom_utilisateur)
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
+        console.error('Une erreur s\'est produite lors de l\'édition de l\'utilisateur :', error);
       }
     );
   }
@@ -82,7 +82,7 @@ export class AccountComponent {
         this.nbEventFavoris = favoris.length;
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        console.error('Une erreur s\'est produite lors de la récupération du nombre de favoris :', error);
       }
     );
   }

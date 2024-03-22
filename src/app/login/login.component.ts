@@ -14,11 +14,16 @@ export class LoginComponent {
   user = new User("", "", "", "", "", "", "", false, "");
   identifitant = "";
   motDePasse = "";
-
-  fm1select = false
+  fm1select = true
   fm2select = false
   m1select = false
   m2select = false
+  erreurUsername = false
+  erreurMail = false
+  erreurMdp = false
+  erreurNom = false
+  erreurPrenom = false
+  erreurDateDeNaissance = false
 
 
   constructor(private authService: AuthService,private router: Router, private usersBackService: UsersBackService) {
@@ -38,16 +43,18 @@ export class LoginComponent {
 
   async submitUser() {
     console.log(this.user);
-    (await this.usersBackService.addUser(this.user)).subscribe(
-      () => {
-        console.log("L'utilisateur a été ajouté avec succès.");
-        // Réinitialiser le formulaire après l'ajout réussi
-        this.user = new User("", "", "", "", "", "", "", false, "");
-      },
-      (error) => {
-        console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
-      }
-    );
+    if(this.verificationInput()){
+      (await this.usersBackService.addUser(this.user)).subscribe(
+        () => {
+          console.log("L'utilisateur a été ajouté avec succès.");
+          // Réinitialiser le formulaire après l'ajout réussi
+          this.user = new User("", "", "", "", "", "", "", false, "");
+        },
+        (error) => {
+          console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
+        }
+      );
+    }
   }
 
   selectImage(image:string){
@@ -83,7 +90,7 @@ export class LoginComponent {
         }
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        console.error('Une erreur s\'est produite lors de la vérification des informations de connexion :', error);
       }
     );
   }
@@ -92,6 +99,41 @@ export class LoginComponent {
     localStorage.clear()
     localStorage.setItem('userId',userId)
     localStorage.setItem('username',username)
+  }
+
+  verificationInput(){
+    let valide = true
+    this.erreurUsername = false
+    this.erreurMail = false
+    this.erreurMdp = false
+    this.erreurNom = false
+    this.erreurPrenom = false
+    this.erreurDateDeNaissance = false
+    if(this.user.nom === ""){
+      this.erreurNom = true
+      valide = false
+    }
+    if(this.user.nom_utilisateur === ""){
+      this.erreurUsername = true
+      valide = false
+    }
+    if(this.user.prenom === ""){
+      this.erreurPrenom = true
+      valide = false
+    }
+    if(this.user.mail === "" || this.user.mail.split('@').length === 1){
+      this.erreurMail = true
+      valide = false
+    }
+    if(this.user.mdp === ""){
+      this.erreurMdp = true
+      valide = false
+    }
+    if(this.user.date_naissance.length != 10){
+      this.erreurDateDeNaissance = true
+      valide = false
+    }
+    return valide
   }
 
 }
