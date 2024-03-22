@@ -3,15 +3,15 @@
     <div class="info">
         <div class="nom">
             <p class="label">Nom de l'évenement</p>
-            <input type="text" class="input" [(ngModel)]="event.nom">
+            <input type="text" class="input" [(ngModel)]="event.nom" [ngClass]="{'erreurInput': erreurNom === true}">
         </div>
         <div class="prix">
             <p class="label">Prix de l'évenement</p>
-            <input type="text" class="input" [(ngModel)]="event.prix">
+            <input type="number" class="input" [(ngModel)]="event.prix">
         </div>
         <div class="date">
             <p class="label">Date de l'évenement</p>
-            <input type="date" class="input" [(ngModel)]="event.date_event">
+            <input type="date" class="input" [(ngModel)]="event.date_event" [ngClass]="{'erreurInput': erreurDate === true}">
         </div>
     </div>
     <div class="choixImage">
@@ -23,7 +23,7 @@
     </div>
     <div class="desc">
         <p class="label">Description de l'évenement</p>
-        <input type="text" class="input descriptionInput" [(ngModel)]="event.description">
+        <input type="text" class="input descriptionInput" [(ngModel)]="event.description" [ngClass]="{'erreurInput': erreurDesc === true}">
     </div>
     <div class="themes">
         <form class="label">
