@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="background">
+    <div class="info">
+        <div class="nom">
+            <p class="label">Nom de l'évenement</p>
+            <input type="text" class="input" [(ngModel)]="event.nom">
+        </div>
+        <div class="prix">
+            <p class="label">Prix de l'évenement</p>
+            <input type="text" class="input" [(ngModel)]="event.prix">
+        </div>
+        <div class="date">
+            <p class="label">Date de l'évenement</p>
+            <input type="date" class="input" [(ngModel)]="event.date_event">
+        </div>
+    </div>
+    <div class="choixImage">
+        <p class="label titreImage">Choix d'une image</p>
+        <img class="image" (click)="selectImage('fete.jpg')" [ngClass]="{'imgSelect': feteSelect === true}" src="../../../assets/images/fete.jpg" alt="">
+        <img class="image" (click)="selectImage('pro.jpg')" [ngClass]="{'imgSelect': proSelect === true}" src="../../../assets/images/pro.jpg" alt="">
+        <img class="image" (click)="selectImage('sport.jpg')" [ngClass]="{'imgSelect': sportSelect === true}" src="../../../assets/images/sport.jpg" alt="">
+        <img class="image" (click)="selectImage('team.jpg')" [ngClass]="{'imgSelect': teamSelect === true}" src="../../../assets/images/team.jpg" alt="">
+    </div>
+    <div class="desc">
+        <p class="label">Description de l'évenement</p>
+        <input type="text" class="input descriptionInput" [(ngModel)]="event.description">
+    </div>
+    <div class="themes">
+        <form class="label">
+            <p class="label">Thème de l'évenement</p>
+            <label><input type="radio" name="tri" value="0" [checked]="event.theme === 0" (change)="selectTheme(0)">Sport</label><br>
+            <label><input type="radio" name="tri" value="1" [checked]="event.theme === 1" (change)="selectTheme(1)">Culture</label><br>
+            <label><input type="radio" name="tri" value="2" [checked]="event.theme === 2" (change)="selectTheme(2)">Festif</label><br>
+            <label><input type="radio" name="tri" value="3" [checked]="event.theme === 3" (change)="selectTheme(3)">Pro</label><br>
+            <label><input type="radio" name="tri" value="4" [checked]="event.theme === 4" (change)="selectTheme(4)">Autre</label><br>
+        </form>     
+    </div>
+    <div class="publication">
+        <button *ngIf="!edition" class="bouton" (click)="submitEvent()">Publier l'évenement</button>
+        <button *ngIf="edition" class="bouton" (click)="updateEvent()">Modifier l'évenement</button>
+    </div>
+</div>

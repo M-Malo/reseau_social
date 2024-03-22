@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="background container">
+    <h1 class="label titre">Vos informations</h1>
+    <div class="gauche">
+        <img class="imageProfil" src="{{utilisateur.image}}" alt="">
+        <p class="admin" *ngIf="utilisateur.admin">Profil administrateur</p>
+    </div>
+    <div class="milieu">
+        <div class="username">
+            <p class="label">Nom d'utilisateur</p>
+            <input class="input" type="text" [(ngModel)]="utilisateur.nom_utilisateur">
+        </div>
+        <div class="mail">
+            <p class="label">Adresse mail</p>
+            <input class="input" type="text" [(ngModel)]="utilisateur.mail">
+        </div>
+        <div class="nom">
+            <p class="label">Nom</p>
+            <input class="input" type="text" [(ngModel)]="utilisateur.nom">
+        </div>
+        <div class="prenom">
+            <p class="label">Prénom</p>
+            <input class="input" type="text" [(ngModel)]="utilisateur.prenom">
+        </div>
+        <div class="birthday" id="birthday">
+            <p class="label">Date de naissance</p>
+            <input class="input" (change)="logValueDate()" type="date" [(ngModel)]="utilisateur.date_naissance">
+        </div>
+    </div>
+    <div class="droite">
+        <div class="droite-haut">
+            <p class="label">Mes évenements</p>
+            <div class="eventUtilisateur">
+                <li *ngFor="let event of eventList" class="label">{{event}}</li>
+            </div>
+        </div>
+        <div class="droite-bas">
+            <p class="label">{{nbEventFavoris}} évenements en favoris</p>
+            <button class="bouton">Consulter</button>  <!--On fait quoi ? direction accueil avec favoris en filtre ? nouveau composant ?-->
+        </div>
+    </div>
+    <button class="bouton update" (click)="updateInfoUser()">Modifier les informations</button>
+</div>

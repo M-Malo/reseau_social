@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="background">
+    <div class="container">
+        <div class="nom">
+            <p class="label"><b>{{event.nom}}</b></p>
+        </div>
+        <div class="description">
+            <p class="label">{{event.description}}</p> 
+        </div>
+        <img class="image" src="{{event.image}}" alt="">
+        <div class="info">
+            <p class="label">{{idEventToTheme(event.theme)}} - {{event.date_event}} - {{event.prix}}€</p>
+        </div>
+        <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
+        <div class="favoris">
+            <p class="label">Ajouté en favoris par :</p>
+            <li *ngFor="let fav of listeFavoris" class="label">{{fav}}</li>
+        </div>
+        <div class="boutonfavoris">
+            <button class="bouton" (click)="addFavori()">Ajouter au favoris</button>
+            <button class="bouton suppr">Supprimer des favoris</button>
+        </div>
+    </div>
+</div>

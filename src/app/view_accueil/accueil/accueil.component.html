@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="background">
+    <div class="top">
+        <h1 class="label">Bienvenue sur Kwack {{username}} !</h1>
+    </div>
+    <div class="container">
+        <div class="colonneTri label">
+            <div>
+                <p>Tri des évenements</p>
+            </div>
+            <div>
+                <form>
+                    <label><input type="radio" name="tri" value="prixCroissant"> Prix croissant</label><br>
+                    <label><input type="radio" name="tri" value="prixDecroissant"> Prix Décroissant</label><br>
+                    <label><input type="radio" name="tri" value="dateCroissant"> Date Croissant</label><br>
+                    <label><input type="radio" name="tri" value="dateDecroissant"> Date Décroissant</label><br>
+                </form>                  
+            </div>
+        </div>
+        <div class="colonneEvent">
+            <div *ngFor="let event of eventList" class="event click" (click)='navigateTo(event._id)'>
+                <div class="infoProfil">
+                    <img class="imageProfil" src={{event.user_organisateur?.image}} alt="">
+                    <p class="label">{{event.user_organisateur?.nom_utilisateur}}</p>
+                </div>
+                <div class="titreEvent label">
+                    <p>{{event.nom}}</p>
+                </div>
+                <div class="resteInfoEvent">
+                    <img src="{{event.image}}" alt="" class="imageEvent">
+                    <div class="label infoEvent">
+                        <p>{{idEventToTheme(event.theme)}}</p>
+                        <p>{{event.date_event}}</p>
+                        <p>{{event.prix}}€</p>
+                    </div>
+                </div>
+            <hr class="ligneHorizon">
+            </div>
+        </div>
+        <div class="colonneFiltre label">
+            <div>
+                <p>filtres</p>                  
+            </div>
+            <hr class="ligneHorizon">
+            <div>
+                <p>Prix max = {{filtre.prixMaxEvent}}</p>
+                <input type="range" min="0" max="100" [(ngModel)]="filtre.prixMaxEvent">
+            </div>
+            <div>
+                <p>Recherche par mot clé</p>
+                <input type="text" placeholder="Tapez un mot clé" [(ngModel)]="filtre.nomEvent">
+            </div>
+            <div>
+                <p>Themes</p>
+                <select name="choix" id="choix" class="inputTheme" [(ngModel)]="filtre.themeEvent">
+                    <option value="-1">Tous</option>
+                    <option value="0">Sport</option>
+                    <option value="1">Culture</option>
+                    <option value="2">Festif</option>
+                    <option value="3">Pro</option>
+                    <option value="4">Autre</option>
+                </select>
+            </div>
+            <hr class="ligneHorizon">
+            <button class="btnAppliquerFiltres bouton" (click)="appliquerFiltre()">Appliquer les filtres</button>
+        </div>
+    </div>
+</div>

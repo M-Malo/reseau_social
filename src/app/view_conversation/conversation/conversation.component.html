@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="background">
+    <h1 class="label">Bienvenue {{username}}</h1>
+    <div class="conversations" >
+        <div *ngFor="let conversation of conversationListe" class="container click" (click)='navigateTo(conversation._id)'>
+            <div class="contact">
+                <img src="../../../assets/images/poolparty.jpg" alt="" class="imageProfil">
+                <p class="label">{{conversation.otherUser?.nom_utilisateur}}</p>
+            </div>
+            <div class="dernierMessage label">
+                <p>{{conversation.dernier_message?.contenu}}</p>
+            </div>
+        </div>
+    </div>
+</div>
