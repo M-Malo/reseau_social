@@ -17,18 +17,25 @@ export class AccountComponent {
 
 
   constructor(private userBackservice: UsersBackService, private eventBackservice: EventsBackService) {
-    this.utilisateur = new User("0","M-Malo","malo.guetto@isen-ouest.yncrea.fr","123poulet","Guetto","Malo","2001-02-28",true, "image")
-    // this.getUser();
-    // this.getEvents();
+    //this.utilisateur = new User("0","M-Malo","malo.guetto@isen-ouest.yncrea.fr","123poulet","Guetto","Malo","2001-02-28",true, "image")
+    if(localStorage.getItem("userId")){
+      let userId: string = JSON.stringify(localStorage.getItem("userId"))
+      let username: string = JSON.stringify(localStorage.getItem("username"))
+      userId = userId.split('"')[1]
+      username = username.split('"')[1]
+      console.log(userId)
+      this.getUser(userId);
+      this.getEvents(userId);
+    }
   }
 
   logValueDate() {
     console.log(this.utilisateur.date_naissance)
   }
 
-  async getUser() {
+  async getUser(userId:string) {
 
-    (await this.userBackservice.getUserById("1")).subscribe( //TODO comment récupérer userId ??
+    (await this.userBackservice.getUserById(userId)).subscribe( //TODO comment récupérer userId ??
       (user: User) => {
         this.utilisateur = user;
         console.log(this.utilisateur);
@@ -39,10 +46,11 @@ export class AccountComponent {
     );
   }
 
-  async getEvents() {
+  async getEvents(userId:string) {
 
-    (await this.eventBackservice.getEventsByUser("1")).subscribe( //TODO comment récupérer userId ??
+    (await this.eventBackservice.getEventsByUser(userId)).subscribe( //TODO comment récupérer userId ??
       (events: Event[]) => {
+        console.log(events)
         for (let event of events) {
           this.eventList.push(event.nom);
         }

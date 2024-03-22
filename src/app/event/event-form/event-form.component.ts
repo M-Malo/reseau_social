@@ -9,7 +9,7 @@ import { Event } from 'src/app/model/event';
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent {
-  event = new Event("65fadeacb1072c2526f04e81", "65fadeacb1072c2526f04e82","",0,"",0,"2024-02-28","")
+  event = new Event("65fadeacb1072c2526f04e81", JSON.stringify(localStorage.getItem('userId')).split('"')[1],"",0,"",0,"2024-02-28","")
   edition = false
 
   constructor(private eventsBackService: EventsBackService, private route: ActivatedRoute) { }

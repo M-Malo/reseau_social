@@ -9,7 +9,7 @@
         </div>
         <img class="image" src="{{event.image}}" alt="">
         <div class="info">
-            <p class="label">{{event.theme}} - {{event.date_event}} - {{event.prix}}€</p>
+            <p class="label">{{idEventToTheme(event.theme)}} - {{event.date_event}} - {{event.prix}}€</p>
         </div>
         <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
         <div class="favoris">
