@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { MongoClient, ObjectId} = require('mongodb');
 const args = process.argv.slice(2);
-const url = args[0] ?? process.env.MONGODB_LOCAL;
+const url = args[0] ?? process.env.MONGODB_URI;
 const dbName = args[1] ?? "projet_RS";
 
 const Message  = {
