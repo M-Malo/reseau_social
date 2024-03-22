@@ -26,9 +26,9 @@ export class AccountComponent {
     console.log(this.utilisateur.date_naissance)
   }
 
-  getUser() {
+  async getUser() {
 
-    this.userBackservice.getUserById("1").subscribe( //TODO comment récupérer userId ??
+    (await this.userBackservice.getUserById("1")).subscribe( //TODO comment récupérer userId ??
       (user: User) => {
         this.utilisateur = user;
         console.log(this.utilisateur);
@@ -39,9 +39,9 @@ export class AccountComponent {
     );
   }
 
-  getEvents() {
+  async getEvents() {
 
-    this.eventBackservice.getEventsByUser("1").subscribe( //TODO comment récupérer userId ??
+    (await this.eventBackservice.getEventsByUser("1")).subscribe( //TODO comment récupérer userId ??
       (events: Event[]) => {
         for (let event of events) {
           this.eventList.push(event.nom);

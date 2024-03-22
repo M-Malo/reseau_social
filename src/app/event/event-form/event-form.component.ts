@@ -31,9 +31,9 @@ export class EventFormComponent {
     });
   }
 
-  submitEvent() {
+  async submitEvent() {
     console.log(this.event);
-    this.eventsBackService.addEvent(this.event).subscribe(
+    (await this.eventsBackService.addEvent(this.event)).subscribe(
       () => {
         console.log("L'événement a été ajouté avec succès.");
         // Réinitialiser le formulaire après l'ajout réussi
@@ -45,8 +45,8 @@ export class EventFormComponent {
     );
   }
 
-  updateEvent() {
-    this.eventsBackService.updateEvent(this.event).subscribe(
+  async updateEvent() {
+    (await this.eventsBackService.updateEvent(this.event)).subscribe(
       () => {
         console.log("L'événement a été édité avec succès.");
         // Réinitialiser le formulaire après l'ajout réussi
@@ -82,9 +82,9 @@ export class EventFormComponent {
     }
   }
 
-  getEventById(id:string) {
+  async getEventById(id:string) {
 
-    this.eventsBackService.getEventById(id).subscribe(
+    (await this.eventsBackService.getEventById(id)).subscribe(
       (event: Event) => {
         console.log(this.event);
         this.event = event

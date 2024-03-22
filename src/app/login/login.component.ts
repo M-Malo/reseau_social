@@ -34,9 +34,9 @@ export class LoginComponent {
   }
 
 
-  submitUser() {
+  async submitUser() {
     console.log(this.user);
-    this.usersBackService.addUser(this.user).subscribe(
+    (await this.usersBackService.addUser(this.user)).subscribe(
       () => {
         console.log("L'utilisateur a été ajouté avec succès.");
         // Réinitialiser le formulaire après l'ajout réussi

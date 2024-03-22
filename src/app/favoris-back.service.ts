@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Favori } from './model/favori';
 
 
 @Injectable({
@@ -12,16 +13,16 @@ export class FavorisBackService {
 
   constructor(private http: HttpClient) { }
 
-  // getFavorisByUser(): Observable<Favori[]> {
-  //   return this.http.get<Favori[]>(`${this.apiUrl}user`);
-  // }
+  async getFavorisByUser(userId : string): Promise<Observable<Favori[]>> {
+    return this.http.get<Favori[]>(`${this.apiUrl}user/${userId}`);
+  }
 
-  // getFavorisByEvent(): Observable<Favori[]> {
-  //   return this.http.get<Favori[]>(`${this.apiUrl}event`);
-  // }
+  async getFavorisByEvent(eventId : string): Promise<Observable<Favori[]>> {
+    return this.http.get<Favori[]>(`${this.apiUrl}event/${eventId}`);
+  }
 
-  // addFavorisByEvent(): Observable<Favori[]> {
-  //   return this.http.post<Favori[]>(`${this.apiUrl}event`); //Voir comment post
-  // }
+  async addFavoris(favoriData : Favori): Promise<Observable<Favori[]>> {
+    return this.http.post<Favori[]>(`${this.apiUrl}event`, favoriData);
+  }
 
 }

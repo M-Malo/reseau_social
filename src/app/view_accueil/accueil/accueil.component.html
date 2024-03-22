@@ -43,16 +43,16 @@
             </div>
             <hr class="ligneHorizon">
             <div>
-                <p>Prix max = {{prixMaxEvent}}</p>
-                <input type="range" min="0" max="100" [(ngModel)]="prixMaxEvent">
+                <p>Prix max = {{filtre.prixMaxEvent}}</p>
+                <input type="range" min="0" max="100" [(ngModel)]="filtre.prixMaxEvent">
             </div>
             <div>
                 <p>Recherche par mot clé</p>
-                <input type="text" placeholder="Tapez un mot clé" [(ngModel)]="nomEvent">
+                <input type="text" placeholder="Tapez un mot clé" [(ngModel)]="filtre.nomEvent">
             </div>
             <div>
                 <p>Themes</p>
-                <select name="choix" id="choix" class="inputTheme" [(ngModel)]="themeEvent">
+                <select name="choix" id="choix" class="inputTheme" [(ngModel)]="filtre.themeEvent">
                     <option value="-1">Tous</option>
                     <option value="0">Sport</option>
                     <option value="1">Culture</option>

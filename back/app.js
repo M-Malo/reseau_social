@@ -14,8 +14,6 @@ const io = new Server(server, {
     }
 });
 
-
-
 const userRouter = require(path.join(__dirname, "routes/user.js"));
 const eventRouter = require(path.join(__dirname, "routes/event.js"));
 const favoriRouter = require(path.join(__dirname, "routes/favori.js"));

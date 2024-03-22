@@ -1,17 +1,19 @@
 <app-header></app-header>
-<div class="container">
-    <div class="messages">
-      <!-- Affichage des messages -->
-      <div *ngFor="let message of messages" class="message">
-        <div class="user">{{ message.id_user }}</div>
-        <div class="text">{{ message.contenu }}</div>
-        <div class="date">{{ message.date_envoi | date: 'medium' }}</div>
-      </div>
+
+<div class="background">
+    <div class="container">
+        <div class="messages">
+            <!-- Affichage des messages -->
+            <div *ngFor="let message of messages" class="message">
+                <div class="user">{{ message.name_user }}</div>
+                <div class="text">{{ message.contenu }}</div>
+            </div>
+        </div>
+
+        <div class="input">
+            <!-- Formulaire pour envoyer un nouveau message -->
+            <input type="text" placeholder="Entrer un message" [(ngModel)]="newMessageText" />
+            <button (click)="sendMessage()">Envoyer</button>
+        </div>
     </div>
-    <div class="input">
-      <!-- Formulaire pour envoyer un nouveau message -->
-      <input type="text" placeholder="Entrez votre message" [(ngModel)]="newMessageText" />
-      <button (click)="sendMessage()">Envoyer</button>
-    </div>
-  </div>
-  
+</div>

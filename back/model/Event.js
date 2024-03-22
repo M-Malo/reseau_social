@@ -71,7 +71,7 @@ const Event  = {
   getByFiltre: async function (priceMax, eventName, eventTheme) {
 
     // Filtrage des événements en fonction des critères
-    let filteredEvents = this.getAll() .then(
+    return this.getAll() .then(
       events => {
         return events.filter(event => {
           // Filtrer par prix maximal si le prix maximum est défini
@@ -88,8 +88,6 @@ const Event  = {
           }
           return true;
     })});
-  
-    return filteredEvents;
   },
 
   getByName : async function(eventName) {
@@ -118,12 +116,30 @@ const Event  = {
     await eventsCollection.deleteOne({_id: eventId});
   },
 
-  sortByPrice : async function() {
-    return this.getAll().sort({price: -1});
+  sortByPrice: async function(conversationIdStr) {
+    return this.getAll().sort((a, b) => {
+      if (a > b) return -1; // -1 pour trier dans l'ordre décroissant
+      if (a < b) return 1;
+      return 0;
+    });
   },
 
-  sortByDate : async function() {
-    return this.getAll().sort({date_event: -1});
+  sortByDate: async function(conversationIdStr) {
+    return this.getAll().sort((a, b) => {
+      const dateA = this.convertStringToDate(a.date_envoi);
+      const dateB = this.convertStringToDate(b.date_envoi);
+
+      if (dateA > dateB) return -1; // -1 pour trier dans l'ordre décroissant
+      if (dateA < dateB) return 1;
+      return 0;
+    });
+  },
+
+  convertStringToDate: function(dateString) {
+    const [datePart, timePart] = dateString.split(':');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute, second] = timePart.split('-');
+    return new Date(year, month - 1, day, hour, minute, second);
   },
 
   updateById : async function(eventIdStr, userIdStr, nom, theme, image, prix, date, description) {

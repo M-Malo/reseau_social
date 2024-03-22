@@ -17,7 +17,7 @@
             <li *ngFor="let fav of listeFavoris" class="label">{{fav}}</li>
         </div>
         <div class="boutonfavoris">
-            <button class="bouton">Ajouter au favoris</button>
+            <button class="bouton" (click)="addFavori()">Ajouter au favoris</button>
             <button class="bouton suppr">Supprimer des favoris</button>
         </div>
     </div>

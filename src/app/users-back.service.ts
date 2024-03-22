@@ -12,15 +12,15 @@ export class UsersBackService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(userData: any): Observable<any> {
+  async addUser(userData: any): Promise<Observable<any>> {
     return this.http.post<any>(`${this.apiUrl}/new`, userData);
   }
 
-  getUserById(userId : String): Observable<User> {
+  async getUserById(userId : String): Promise<Observable<User>> {
     return this.http.get<User>(`${this.apiUrl}/${userId}`);
   }
 
-  getUserByUsername(username : String): Observable<User> {
+  async getUserByUsername(username : String): Promise<Observable<User>> {
     return this.http.get<User>(`${this.apiUrl}/username/${username}`);
   }
 

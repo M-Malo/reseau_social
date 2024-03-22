@@ -3,6 +3,8 @@ import { Message } from 'src/app/model/message';
 import { WebSocketService } from 'src/app/web-socket.service';
 import { MessagesBackService } from 'src/app/messages-back.service'; 
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsersBackService } from 'src/app/users-back.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-chat',
@@ -10,17 +12,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  id_conversation: string = "65fadeacb1072c2526f04e82";
-
+  id_conversation: string = "65fc84a045a227143bff25e2";
+  user : User = new User("", "", "", "", "", "", "", false, "");
   messages: Message[] = [];
   newMessageText: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router,private messagesBackService: MessagesBackService, private webSocketService: WebSocketService) { }
+  constructor(private route: ActivatedRoute, private router: Router,private messagesBackService: MessagesBackService, private userBackService: UsersBackService, private webSocketService: WebSocketService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       //this.id_conversation = params['id']; // Récupère l'ID de l'URL
-      this.id_conversation = "65fadeacb1072c2526f04e82";
+      this.id_conversation = "65fc84a045a227143bff25e2";
     });
     this.getMessages();
     
@@ -33,9 +35,9 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  getMessages() {
+  async getMessages() {
     console.log("recuperation des messages");
-    this.messagesBackService.getMessagesByConversation("65fadeacb1072c2526f04e82").subscribe(
+    (await this.messagesBackService.getMessagesByConversation(this.id_conversation)).subscribe(
       (messages: Message[]) => {
         this.messages = messages;
         console.log(messages);
@@ -46,18 +48,34 @@ export class ChatComponent implements OnInit {
     );
   }
 
-  sendMessage() {
+  async getUsername(idUser: string) {
+    
+    (await this.userBackService.getUserById(idUser)).subscribe(
+      (user: User) => {
+        this.user = user;
+        console.log(this.user);
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération de l\'événement :', error);
+      }
+    );
+    return this.user.nom_utilisateur;
+  }
+
+  async sendMessage() {
     console.log('Envoi du message en cours...');
+    
     const newMessageData = {
-      id_conversation: "65fadeacb1072c2526f04e82",
-      id_user: "65fadeacb1072c2526f04e82",
+      id_conversation: "65fc84a045a227143bff25e2",
+      id_user: "65fc83aa45a227143bff25d4",
+      name_user: await this.getUsername("65fc83aa45a227143bff25d4"),
       contenu: this.newMessageText,
       date_envoi: "2024-02-02"
     };
   
     console.log('Données du nouveau message :', newMessageData);
   
-    this.messagesBackService.addMessage(newMessageData).subscribe(
+    (await this.messagesBackService.addMessage(newMessageData)).subscribe(
       (response) => {
         console.log('Message envoyé avec succès :', response);
         // Effacer le champ de saisie après l'envoi du message

@@ -73,6 +73,22 @@ router.get('/filtre/:prix/:nom/:theme', async (req, res) => {
     res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des évènements." });
   }
 });
+/*router.post('/filter', async (req, res) => {
+  try {
+    const events = await Event.getByFiltre(
+      Number(req.body.prixMax),
+      req.body.nom!==""? req.body.nom : null,
+      req.body.theme!=="-1"? Number(req.body.theme) : null);
+    // TODO
+    //ajouter dans le json une variable correspondant à favori (true/false)
+    //ajouter dans le json des variables pour choisir le tri ou non (prix/date/null) puis le sens croissant/decroissant (1/-1)
+
+    res.json(events);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des évènements filtrés." });
+  }
+});*/
 
 
 /* Récupération d'un évènement par id */
