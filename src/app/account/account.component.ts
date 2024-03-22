@@ -61,4 +61,16 @@ export class AccountComponent {
       }
     );
   }
+  async updateInfoUser() {
+    (await this.userBackservice.updateUser(this.utilisateur)).subscribe(
+      () => {
+        console.log("L'utilisateur a été modifié avec succès.");
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
+      }
+    );
+  }
+
+  
 }

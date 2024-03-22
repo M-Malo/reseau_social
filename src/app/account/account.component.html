@@ -14,10 +14,6 @@
             <p class="label">Adresse mail</p>
             <input class="input" type="text" [(ngModel)]="utilisateur.mail">
         </div>
-        <div class="password">
-            <p class="label">Mot de passe</p>
-            <input class="input" type="text" [(ngModel)]="utilisateur.mdp">
-        </div>
         <div class="nom">
             <p class="label">Nom</p>
             <input class="input" type="text" [(ngModel)]="utilisateur.nom">
@@ -43,4 +39,5 @@
             <button class="bouton">Consulter</button>  <!--On fait quoi ? direction accueil avec favoris en filtre ? nouveau composant ?-->
         </div>
     </div>
+    <button class="bouton update" (click)="updateInfoUser()">Modifier les informations</button>
 </div>

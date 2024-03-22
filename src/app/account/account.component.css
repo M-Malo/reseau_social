@@ -2,7 +2,7 @@
     background-color: #17202A;
     height: 100vh;
     display: grid;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 15% 75% 10%;
     margin: -8px;
     overflow: scroll;
 }
@@ -10,7 +10,7 @@
 .container {
     display: grid;
     grid-template-columns: 33% 34% 33%;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 15% 75% 10%;
 }
 
 .gauche {
@@ -74,4 +74,11 @@
     height: 20px;
     border: none;
     padding: 3px;
+}
+
+.update{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    margin: auto;
 }

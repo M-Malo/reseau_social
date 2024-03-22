@@ -94,7 +94,7 @@ const User = {
     await usersCollection.deleteOne({_id: userId});
   },
 
-  updateById : async function(userIdStr, nom_utilisateur, nom, prenom, mail, admin, image, date_naissance) {
+  updateById : async function(userIdStr, nom_utilisateur, nom, prenom, mail, admin,) {
 
     const client = new MongoClient(url);
     const db = client.db(dbName);
@@ -107,8 +107,6 @@ const User = {
         prenom: prenom,
         mail: mail,
         admin: admin,
-        image: image,
-        date_naissance: date_naissance
     }});
   },
 
