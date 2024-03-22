@@ -18,6 +18,7 @@ export class EventViewComponent {
   listeFavoris: string[] = [];
   userId: string = "";
   username: string = "";
+  estOrganisateur = false;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private eventBackservice: EventsBackService, private favoriBackService: FavorisBackService, private usersBackService : UsersBackService) {
@@ -27,6 +28,8 @@ export class EventViewComponent {
       this.userId = this.userId.split('"')[1]
       this.username = this.username.split('"')[1]
       console.log(this.userId)
+      console.log(this.event.id_organisateur)
+      console.log(this.estOrganisateur)
 
     }
   }
@@ -63,6 +66,9 @@ export class EventViewComponent {
       (event: Event) => {
         this.event = event;
         console.log(this.event);
+        if(this.userId == this.event.id_organisateur){
+          this.estOrganisateur = true
+        }
       },
       (error) => {
         console.error('Une erreur s\'est produite lors de la récupération de l\'événement :', error);

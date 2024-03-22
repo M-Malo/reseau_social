@@ -11,7 +11,7 @@
         <div class="info">
             <p class="label">{{idEventToTheme(event.theme)}} - {{event.date_event}} - {{event.prix}}€</p>
         </div>
-        <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
+        <button *ngIf="estOrganisateur" (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
         <div class="favoris">
             <p class="label">Ajouté en favoris par :</p>
             <li *ngFor="let fav of listeFavoris" class="label">{{fav}}</li>
