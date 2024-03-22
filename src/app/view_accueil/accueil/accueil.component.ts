@@ -24,7 +24,7 @@ export class AccueilComponent{
       this.username = JSON.stringify(localStorage.getItem("username"))
       this.userId = this.userId.split('"')[1]
       this.username = this.username.split('"')[1]
-    }
+    };
     this.getEvents();
   }
 
@@ -53,7 +53,7 @@ export class AccueilComponent{
           console.error('Une erreur s\'est produite lors du rajout d\'information sur un évenement:', error);
         }
       );
-  }
+  };
 }
 
   async appliquerFiltre() {

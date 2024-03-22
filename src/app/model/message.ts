@@ -1,4 +1,3 @@
-
 export class Message {
     json(): any {
       throw new Error('Method not implemented.');
@@ -10,7 +9,7 @@ export class Message {
     contenu: string;
     date_envoi: string;
 
-    constructor(_id: string, id_conversation: string, id_user: string, name_user: string, contenu:string, date_envoi: string) {
+    constructor(_id: string, id_conversation: string, id_user: string, name_user: string, contenu: string, date_envoi: string) {
         this._id = _id;
         this.id_conversation = id_conversation;
         this.id_user = id_user;
@@ -19,5 +18,5 @@ export class Message {
         this.date_envoi = date_envoi;
     }
 
-    
+
 }
