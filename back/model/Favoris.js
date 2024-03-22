@@ -32,6 +32,18 @@ const Favori = {
     }
   },
 
+  deleteByEventUser : async function(eventIdStr, userIdStr) {
+
+    const client = new MongoClient(url);
+    const db = client.db(dbName);
+    const favorisCollection = db.collection('favoris');
+
+    let eventId = new ObjectId(eventIdStr);
+    let userId = new ObjectId(userIdStr);
+
+    await favorisCollection.deleteOne({id_event: eventId, id_user: userId});
+  },
+
   getAll : async function()  {
 
     const client = new MongoClient(url);

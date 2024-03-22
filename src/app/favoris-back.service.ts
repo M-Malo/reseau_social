@@ -25,4 +25,8 @@ export class FavorisBackService {
     return this.http.post<any>(`${this.apiUrl}new`, favoriData);
   }
 
+  async deleteFavori(favoriData : any): Promise<Observable<any>> {
+    return this.http.post<any>(`${this.apiUrl}delete`, favoriData);
+  }
+
 }

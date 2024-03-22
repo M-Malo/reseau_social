@@ -89,6 +89,18 @@ export class EventViewComponent {
     );
   }
 
+  async deleteFavori() {
+    let newFavori = {id_event: this.id, id_user: this.userId};
+    (await this.favoriBackService.deleteFavori(newFavori)).subscribe(
+      () => {
+        console.log("Le favori a été supprimé avec succès.");
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la suppression du favori :', error);
+      }
+    );
+  }
+
   async getEvent() {
 
     (await this.eventBackservice.getEventById(this.id)).subscribe(

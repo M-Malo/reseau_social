@@ -17,14 +17,28 @@ router.post('/new', async (req, res) => {
   }
 });
 
-/* Récupération des favoris d'un user */
+/* Suppression d'un favori par l'eventId et le userId */
+router.post('/delete', async (req, res) => {
+  try {
+    await Favoris.deleteByEventUser(
+      req.body.id_event,
+      req.body.id_user)
+      .then(console.log);
+    res.status(200).json({ message: "Le favori a été supprimé avec succès."});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la suppression du favori." });
+  }
+});
+
+/* Récupération des favori d'un user */
 router.get('/user/:idUser', async (req, res) => {
   try {
     const favoris = await Favoris.getByUser(req.params.idUser);
     res.json(favoris);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération des favoris de l'utilisateur." });
+    res.status(500).json({ message: "Une erreur s'est produite lors de la suppression du favori." });
   }
 });
 
