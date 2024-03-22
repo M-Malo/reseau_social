@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventsBackService } from 'src/app/events-back.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/model/event';
 
 @Component({
@@ -16,7 +16,7 @@ export class EventFormComponent {
   erreurDesc = false
  
 
-  constructor(private eventsBackService: EventsBackService, private route: ActivatedRoute) { }
+  constructor(private eventsBackService: EventsBackService, private route: ActivatedRoute, private router: Router) { }
 
   id = ""
   feteSelect = true
@@ -43,6 +43,9 @@ export class EventFormComponent {
           console.log("L'événement a été ajouté avec succès.");
           // Réinitialiser le formulaire après l'ajout réussi
           this.event = new Event("", "","",0,"",0,"2024-02-28","");
+          const url = '/accueil'
+          this.router.navigateByUrl(url);
+          this.router.navigate([url]);
         },
         (error) => {
           console.error('Une erreur s\'est produite lors de l\'ajout de l\'événement :', error);
