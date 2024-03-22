@@ -74,8 +74,8 @@ export class LoginComponent {
     }
   }
 
-  checkLoginInfo(){
-    this.usersBackService.getUserByUsername(this.identifitant).subscribe(
+  async checkLoginInfo(){
+    (await this.usersBackService.getUserByUsername(this.identifitant)).subscribe(
       (user: User) => {
         if(user.mdp === this.motDePasse){
           this.enregistreIdLocalStorage(user._id,user.nom_utilisateur)
