@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConversationsBackService } from 'src/app/conversations-back.service';
 import { EventsBackService } from 'src/app/events-back.service';
 import { FavorisBackService } from 'src/app/favoris-back.service';
 import { Event } from 'src/app/model/event';
@@ -20,7 +21,7 @@ export class EventViewComponent {
   username: string = "";
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private eventBackservice: EventsBackService, private favoriBackService: FavorisBackService, private usersBackService : UsersBackService) {
+  constructor(private route: ActivatedRoute, private router: Router, private eventBackservice: EventsBackService, private favoriBackService: FavorisBackService, private usersBackService : UsersBackService, private conversationsBackService: ConversationsBackService) {
     if(localStorage.getItem("userId")){
       this.userId = JSON.stringify(localStorage.getItem("userId"))
       this.username = JSON.stringify(localStorage.getItem("username"))
@@ -43,6 +44,34 @@ export class EventViewComponent {
     let url = "/eventForm"
     this.router.navigateByUrl(url);
     this.router.navigate([url,this.id]);
+  }
+
+  navigateToConversation(){
+    let url = "/conversation"
+    this.router.navigateByUrl(url);
+  }
+
+  async clickCreateConversation(usernameOther: String) {
+    
+    (await this.usersBackService.getUserByUsername(usernameOther)).subscribe(
+      async (user: User) => {
+        console.log("L'utilisateur à été récupéré avec succès.");
+        let newConversation = {id_user1: this.userId, id_user2: user._id};
+        (await this.conversationsBackService.addConversation(newConversation)).subscribe(
+          () => {
+            console.log("La conversation a été créée avec succès.");
+            this.navigateToConversation();
+          },
+          (error) => {
+            console.error('Une erreur s\'est produite lors de la création de la conversation :', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération de l\'utilisateur :', error);
+      }
+    );
+    
   }
 
   async addFavori() {

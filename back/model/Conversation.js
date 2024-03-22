@@ -10,26 +10,20 @@ const Conversation = {
   addConversation : async function(idUser1Str, idUser2Str) {
 
     const client = new MongoClient(url);
-    try {
-      await client.connect();
-      console.log(`[Conversation] Connected successfully to MongoDB server: ${url}`);
-      const db = client.db(dbName);
+    await client.connect();
+    console.log(`[Conversation] Connected successfully to MongoDB server: ${url}`);
+    const db = client.db(dbName);
 
-      const conversationsCollection = db.collection('conversations');
-      await conversationsCollection.insertOne({
-        id_user1 : new ObjectId(idUser1Str),
-        id_user2 : new ObjectId(idUser2Str)
-      })
-        .then(
-          () => {
-            console.log(`[Conversation] Conversation created`);
-          }
-        );
-    }
-    finally {
-      await client.close();
-      console.log('[Conversation] Connection to MongoDB closed.');
-    }
+    const conversationsCollection = db.collection('conversations');
+    conversationsCollection.insertOne({
+      id_user1 : new ObjectId(idUser1Str),
+      id_user2 : new ObjectId(idUser2Str)
+    })
+      .then(
+        () => {
+          console.log(`[Conversation] Conversation created`);
+        }
+      );
   },
 
   getAll : async function()  {

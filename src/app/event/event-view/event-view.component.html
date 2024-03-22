@@ -14,7 +14,9 @@
         <button (click)="navigate()" class="editEvent bouton">Editer l'évenement</button>
         <div class="favoris">
             <p class="label">Ajouté en favoris par :</p>
-            <li *ngFor="let fav of listeFavoris" class="label">{{fav}}</li>
+            <li *ngFor="let fav of listeFavoris" class="label">
+                <button class="bouton" (click)="clickCreateConversation(fav)">{{fav}} : lancer la conversation </button>
+            </li>
         </div>
         <div class="boutonfavoris">
             <button class="bouton" (click)="addFavori()">Ajouter au favoris</button>

@@ -8,9 +8,14 @@ import { Conversation } from './model/conversation';
 })
 export class ConversationsBackService {
 
+
   private apiUrl = 'http://localhost:5000/conversation';
 
   constructor(private http: HttpClient) { }
+
+  async addConversation(conversation : any): Promise<Observable<any>> {
+    return this.http.post<any>(`${this.apiUrl}/new`, conversation);
+  }
 
   async getConversationById(conversationId : String): Promise<Observable<Conversation>> {
     return this.http.get<Conversation>(`${this.apiUrl}/${conversationId}`);
