@@ -12,6 +12,8 @@ import { UsersBackService } from '../users-back.service';
 export class LoginComponent {
   veutCreerCompte = false
   user = new User("", "", "", "", "", "", "", false, "");
+  identifitant = "";
+  motDePasse = "";
 
   fm1select = false
   fm2select = false
@@ -70,6 +72,26 @@ export class LoginComponent {
         this.m2select = true
         break;
     }
+  }
+
+  checkLoginInfo(){
+    this.usersBackService.getUserByUsername(this.identifitant).subscribe(
+      (user: User) => {
+        if(user.mdp === this.motDePasse){
+          this.enregistreIdLocalStorage(user._id,user.nom_utilisateur)
+          this.login()
+        }
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+      }
+    );
+  }
+
+  enregistreIdLocalStorage(userId:string,username:string){
+    localStorage.clear()
+    localStorage.setItem('userId',userId)
+    localStorage.setItem('username',username)
   }
 
 }
