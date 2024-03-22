@@ -66,14 +66,14 @@ export class AccountComponent {
     (await this.userBackservice.updateUser(this.utilisateur)).subscribe(
       () => {
         console.log("L'utilisateur a été modifié avec succès.");
+        localStorage.removeItem("username");
+        localStorage.setItem("username", this.utilisateur.nom_utilisateur)
       },
       (error) => {
         console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur :', error);
       }
     );
   }
-
-  
 
   async getNbFavori(userId:string) {
 
