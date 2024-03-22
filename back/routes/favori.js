@@ -6,7 +6,7 @@ const router = express.Router();
 /* Création d'un favori */
 router.post('/new', async (req, res) => {
   try {
-    Favoris.addFavori(
+    await Favoris.addFavori(
       req.body.id_event,
       req.body.id_user)
       .then(console.log);

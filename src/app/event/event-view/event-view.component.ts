@@ -16,8 +16,19 @@ export class EventViewComponent {
   event = new Event("","","Anniversaire",3,"../../../assets/images/poolparty.jpg",5,"2024-02-28","Salut Salut, on va feter mon anniv à la casa avec les copaings, Venez nombreux cela va etre sper sympas. N’oubliez pas de venir avec un SAM")
   id: string = "0";
   listeFavoris: string[] = [];
+  userId: string = "";
+  username: string = "";
+
 
   constructor(private route: ActivatedRoute, private router: Router, private eventBackservice: EventsBackService, private favoriBackService: FavorisBackService, private usersBackService : UsersBackService) {
+    if(localStorage.getItem("userId")){
+      this.userId = JSON.stringify(localStorage.getItem("userId"))
+      this.username = JSON.stringify(localStorage.getItem("username"))
+      this.userId = this.userId.split('"')[1]
+      this.username = this.username.split('"')[1]
+      console.log(this.userId)
+
+    }
   }
 
   ngOnInit(): void {
@@ -35,8 +46,15 @@ export class EventViewComponent {
   }
 
   async addFavori() {
-    let newFavori = new Favori(this.id, "65fc83aa45a227143bff25d4") //TODO id de l'utilisateur
-    this.favoriBackService.addFavoris(newFavori);
+    let newFavori = {id_event: this.id, id_user: this.userId};
+    (await this.favoriBackService.addFavori(newFavori)).subscribe(
+      () => {
+        console.log("Le favori a été ajouté avec succès.");
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de l\'ajout du favori :', error);
+      }
+    );
   }
 
   async getEvent() {
@@ -66,7 +84,7 @@ export class EventViewComponent {
         }
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des favoris d\'un événement :', error);
+        console.error('Une erreur s\'est produite lors de la récupération des favoris :', error);
       }
     );
   }

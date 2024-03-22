@@ -14,10 +14,16 @@ import { UsersBackService } from 'src/app/users-back.service';
 })
 export class ConversationComponent {
   conversationListe: Conversation[] = [];
-  user = "M-Malo"
-  userId = "65fc83aa45a227143bff25d4" //TODO mettre l'Id de user
+  userId: string = "";
+  username: string = "";
 
   constructor(private conversationBackservice: ConversationsBackService, private messageBackService : MessagesBackService, private userBackService: UsersBackService, private router: Router) {
+    if(localStorage.getItem("userId")){
+      this.userId = JSON.stringify(localStorage.getItem("userId"))
+      this.username = JSON.stringify(localStorage.getItem("username"))
+      this.userId = this.userId.split('"')[1]
+      this.username = this.username.split('"')[1]
+    }
     this.getConversations();
   }
   
@@ -59,7 +65,6 @@ export class ConversationComponent {
 
 
   navigateTo(idConversation: string) {
-    idConversation = "65fadeacb1072c2526f04e82"; //TODO retirer pour avoi le bon id du composant
     const url = "conversation"
     this.router.navigateByUrl(url);
     this.router.navigate([url, idConversation]);

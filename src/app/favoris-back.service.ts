@@ -21,8 +21,8 @@ export class FavorisBackService {
     return this.http.get<Favori[]>(`${this.apiUrl}event/${eventId}`);
   }
 
-  async addFavoris(favoriData : Favori): Promise<Observable<Favori[]>> {
-    return this.http.post<Favori[]>(`${this.apiUrl}event`, favoriData);
+  async addFavori(favoriData : any): Promise<Observable<any>> {
+    return this.http.post<any>(`${this.apiUrl}new`, favoriData);
   }
 
 }
