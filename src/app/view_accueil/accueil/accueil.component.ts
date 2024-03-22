@@ -26,7 +26,7 @@ export class AccueilComponent{
     (await this.eventBackservice.getEvents()).subscribe(
       async (events: Event[]) => {
         this.eventList = events;
-        await this.updateInfosConversations(events);
+        await this.updateInfosEvent(events);
         console.log(this.eventList);
       },
       (error) => {
@@ -35,7 +35,7 @@ export class AccueilComponent{
     );
   }
 
-  async updateInfosConversations(events: Event[]) {
+  async updateInfosEvent(events: Event[]) {
     for (let event of events){
       (await this.usersBackService.getUserById(event.id_organisateur)).subscribe(
         async (user: User) => {
@@ -43,7 +43,7 @@ export class AccueilComponent{
           this.eventList.push(event);
         },
         (error) => {
-          console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+          console.error('Une erreur s\'est produite lors du rajout d\'information sur un évenement:', error);
         }
       );
   }

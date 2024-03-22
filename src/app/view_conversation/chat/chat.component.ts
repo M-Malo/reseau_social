@@ -56,7 +56,7 @@ export class ChatComponent implements OnInit {
         console.log(this.user);
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération de l\'événement :', error);
+        console.error('Une erreur s\'est produite lors de la récupération de l\'username :', error);
       }
     );
     return this.user.nom_utilisateur;

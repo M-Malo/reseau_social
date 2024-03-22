@@ -66,7 +66,7 @@ export class EventViewComponent {
         }
       },
       (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération de l\'événement :', error);
+        console.error('Une erreur s\'est produite lors de la récupération des favoris d\'un événement :', error);
       }
     );
   }
@@ -89,5 +89,5 @@ export class EventViewComponent {
     }
     return theme
   }
-  
+
 }
