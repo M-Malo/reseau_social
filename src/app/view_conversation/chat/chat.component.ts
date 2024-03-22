@@ -12,20 +12,28 @@ import { User } from 'src/app/model/user';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  id_conversation: string = "65fc84a045a227143bff25e2";
+  id_conversation: string = "";
   user : User = new User("", "", "", "", "", "", "", false, "");
   messages: Message[] = [];
   newMessageText: string = '';
+  userId: string = "";
+  username: string = "";
 
-  constructor(private route: ActivatedRoute, private router: Router,private messagesBackService: MessagesBackService, private userBackService: UsersBackService, private webSocketService: WebSocketService) { }
-
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute, private router: Router,private messagesBackService: MessagesBackService, private userBackService: UsersBackService, private webSocketService: WebSocketService) {
+    if(localStorage.getItem("userId")){
+      this.userId = JSON.stringify(localStorage.getItem("userId"))
+      this.username = JSON.stringify(localStorage.getItem("username"))
+      this.userId = this.userId.split('"')[1]
+      this.username = this.username.split('"')[1]
+    }
     this.route.params.subscribe(params => {
-      //this.id_conversation = params['id']; // Récupère l'ID de l'URL
-      this.id_conversation = "65fc84a045a227143bff25e2";
+      this.id_conversation = params['id'];
     });
     this.getMessages();
-    
+   }
+
+  ngOnInit(): void {
+ 
     // Écouter les nouveaux messages via WebSocket
     this.webSocketService.listen('new-message').subscribe((message: Message) => {
       if (message.id_conversation === this.id_conversation) {
@@ -64,13 +72,12 @@ export class ChatComponent implements OnInit {
 
   async sendMessage() {
     console.log('Envoi du message en cours...');
-    
     const newMessageData = {
-      id_conversation: "65fc84a045a227143bff25e2",
-      id_user: "65fc83aa45a227143bff25d4",
-      name_user: await this.getUsername("65fc83aa45a227143bff25d4"),
+      id_conversation: this.id_conversation,
+      id_user: this.userId,
+      name_user: this.username,
       contenu: this.newMessageText,
-      date_envoi: "2024-02-02"
+      date_envoi: this.getCurrentDateTimeString
     };
   
     console.log('Données du nouveau message :', newMessageData);
@@ -87,5 +94,18 @@ export class ChatComponent implements OnInit {
       }
     );
   }
-  
+
+  getCurrentDateTimeString(): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = this.padZero(now.getMonth() + 1); // Les mois commencent à 0
+    const day = this.padZero(now.getDate());
+    const hours = this.padZero(now.getHours());
+    const minutes = this.padZero(now.getMinutes());
+    const seconds = this.padZero(now.getSeconds());
+    return `${year}-${month}-${day}:${hours}-${minutes}-${seconds}`;
+  }
+  padZero(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+  }
 }

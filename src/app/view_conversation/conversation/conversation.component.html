@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="background">
-    <h1 class="label">Bienvenue {{user}}</h1>
+    <h1 class="label">Bienvenue {{username}}</h1>
     <div class="conversations" >
         <div *ngFor="let conversation of conversationListe" class="container click" (click)='navigateTo(conversation._id)'>
             <div class="contact">
