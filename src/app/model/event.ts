@@ -1,3 +1,4 @@
+import { User } from "./user";
 
 export class Event {
     _id: string;
@@ -8,6 +9,7 @@ export class Event {
     prix: number;
     date_event: string;
     description: string;
+    user_organisateur?: User;
 
     constructor(IdEvent: string, id_organisateur: string, nom: string, theme: number, image: string, prix: number, date_event: string, description: string) {
         this._id = IdEvent;

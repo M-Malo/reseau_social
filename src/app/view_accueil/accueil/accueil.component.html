@@ -20,8 +20,8 @@
         <div class="colonneEvent">
             <div *ngFor="let event of eventList" class="event click" (click)='navigateTo(event._id)'>
                 <div class="infoProfil">
-                    <img class="imageProfil" src="../../../assets/images/poolparty.jpg" alt="">
-                    <p class="label">M-Malo</p>
+                    <img class="imageProfil" src={{event.user_organisateur?.image}} alt="">
+                    <p class="label">{{event.user_organisateur?.nom_utilisateur}}</p>
                 </div>
                 <div class="titreEvent label">
                     <p>{{event.nom}}</p>

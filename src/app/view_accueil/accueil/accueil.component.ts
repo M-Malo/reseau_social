@@ -3,6 +3,8 @@ import { Event } from '../../model/event';
 import { Router } from '@angular/router';
 import { EventsBackService } from 'src/app/events-back.service';
 import { HttpClient } from '@angular/common/http';
+import { UsersBackService } from 'src/app/users-back.service';
+import { User } from 'src/app/model/user';
 
 
 @Component({
@@ -15,15 +17,16 @@ export class AccueilComponent{
   eventList: Event[] = [];
   filtre = {prixMaxEvent : 50, nomEvent : "", themeEvent: "-1"}
 
-  constructor(private eventBackservice: EventsBackService, private router: Router) {
+  constructor(private eventBackservice: EventsBackService, private usersBackService : UsersBackService, private router: Router) {
     this.getEvents();
   }
 
   async getEvents() {
 
     (await this.eventBackservice.getEvents()).subscribe(
-      (events: Event[]) => {
+      async (events: Event[]) => {
         this.eventList = events;
+        await this.updateInfosConversations(events);
         console.log(this.eventList);
       },
       (error) => {
@@ -31,6 +34,20 @@ export class AccueilComponent{
       }
     );
   }
+
+  async updateInfosConversations(events: Event[]) {
+    for (let event of events){
+      (await this.usersBackService.getUserById(event.id_organisateur)).subscribe(
+        async (user: User) => {
+          event.user_organisateur = user;
+          this.eventList.push(event);
+        },
+        (error) => {
+          console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        }
+      );
+  }
+}
 
   async appliquerFiltre() {
 
