@@ -12,11 +12,15 @@ export class MessagesBackService {
 
   constructor(private http: HttpClient) { }
 
-  getMessagesByConversation(conversationId : String): Observable<Message[]> {
+  async getMessagesByConversation(conversationId : String): Promise<Observable<Message[]>> {
     return this.http.get<Message[]>(`${this.apiUrl}/${conversationId}`);
   }
+
+  async getLastMessageForConversation(conversationId : String): Promise<Observable<Message>> {
+    return this.http.get<Message>(`${this.apiUrl}/last/${conversationId}`);
+  }
   
-  addMessage(messageData: any): Observable<any> {
+  async addMessage(messageData: any): Promise<Observable<any>> {
     return this.http.post<any>(`${this.apiUrl}/${messageData.id_conversation}/new`, messageData);
   }
 }

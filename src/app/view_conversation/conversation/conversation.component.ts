@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConversationsBackService } from 'src/app/conversations-back.service';
+import { MessagesBackService } from 'src/app/messages-back.service';
 import { Conversation } from 'src/app/model/conversation';
 import { Message } from 'src/app/model/message';
 
@@ -10,25 +11,39 @@ import { Message } from 'src/app/model/message';
   styleUrls: ['./conversation.component.css']
 })
 export class ConversationComponent {
-  conversationListe: Conversation[] = [new Conversation("0","0","1"),new Conversation("1","0","2"),new Conversation("2","0","3")]
-  dernierMessage: Message = new Message("0","0","0","C'est mon dernier message","2024-03-19")
+  conversationListe: Conversation[] = [];
   user = "M-Malo"
 
-  constructor(private conversationBackservice: ConversationsBackService, private router: Router) {
-    //this.getConversations();
+  constructor(private conversationBackservice: ConversationsBackService, private messageBackService : MessagesBackService, private router: Router) {
+    this.getConversations();
   }
+  
+  async getConversations() {
 
-  getConversations() {
-
-    this.conversationBackservice.getConversationsByUser("userId").subscribe( //TODO comment récupérer userId ??
-      (events: Conversation[]) => {
-        this.conversationListe = events;
+    (await this.conversationBackservice.getConversationsByUser("65fc83aa45a227143bff25d4")).subscribe(
+      async (conversations: Conversation[]) => {
+        await this.updateDernierMessage(conversations);
         console.log(this.conversationListe);
       },
       (error) => {
         console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
       }
     );
+  }
+
+  async updateDernierMessage(conversations: Conversation[]) {
+    for (let conversation of conversations){
+      (await this.messageBackService.getLastMessageForConversation(conversation._id)).subscribe(
+        async (message: Message) => {
+          conversation.dernier_message = message;
+          this.conversationListe.push(conversation);
+        },
+        (error) => {
+          console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+        }
+      );
+    }
+  
   }
 
   navigateTo(idConversation: string) {

@@ -6,7 +6,7 @@ const dbName = args[1] ?? "projet_RS";
 
 const Message  = {
 
-  addMessage : async function(conversationIdStr, userIdStr, content, date_envoi) {
+  addMessage : async function(conversationIdStr, userIdStr, name_user, content, date_envoi) {
 
     const client = new MongoClient(url);
     const db = client.db(dbName);
@@ -17,6 +17,7 @@ const Message  = {
     messagesCollection.insertOne({
       id_conversation: conversationId,
       id_user: userId,
+      name_user: name_user,
       contenu: content,
       date_envoi: date_envoi
     })
@@ -44,6 +45,7 @@ const Message  = {
           _id: message._id.toString(),
           id_conversation: message.id_conversation,
           id_user: message.id_user,
+          name_user: message.name_user,
           contenu: message.contenu,
           date_envoi: message.date_envoi
         };
@@ -72,12 +74,33 @@ const Message  = {
   },
 
   getByConversation : async function(conversationIdStr) {
-    console.log("debut getByConversation");
-    console.log(conversationIdStr);
     return this.getAll()
       .then(messages => {
         return messages.filter(message => message.id_conversation.toString() === conversationIdStr);
       });
+  },
+
+  getLastMessageByConversation: async function(conversationIdStr) {
+    const messages = await this.getByConversation(conversationIdStr);
+
+    // Trier les messages par date_envoi dans l'ordre décroissant
+    const sortedMessages = messages.sort((a, b) => {
+      const dateA = this.convertStringToDate(a.date_envoi);
+      const dateB = this.convertStringToDate(b.date_envoi);
+
+      if (dateA > dateB) return -1; // -1 pour trier dans l'ordre décroissant
+      if (dateA < dateB) return 1;
+      return 0;
+    });
+
+    return sortedMessages[0] || null;
+  },
+
+  convertStringToDate: function(dateString) {
+    const [datePart, timePart] = dateString.split(':');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute, second] = timePart.split('-');
+    return new Date(year, month - 1, day, hour, minute, second);
   },
 
   deleteById : async function(messageIdStr) {

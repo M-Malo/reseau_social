@@ -13,17 +13,15 @@ import { HttpClient } from '@angular/common/http';
 export class AccueilComponent{
   userConnected: string = "M-Malo";
   eventList: Event[] = [];
-  themeEvent: string = "-1";
-  prixMaxEvent = 50;
-  nomEvent = "";
+  filtre = {prixMaxEvent : 50, nomEvent : "", themeEvent: "-1"}
 
   constructor(private eventBackservice: EventsBackService, private router: Router) {
     this.getEvents();
   }
 
-  getEvents() {
+  async getEvents() {
 
-    this.eventBackservice.getEvents().subscribe(
+    (await this.eventBackservice.getEvents()).subscribe(
       (events: Event[]) => {
         this.eventList = events;
         console.log(this.eventList);
@@ -34,10 +32,10 @@ export class AccueilComponent{
     );
   }
 
-  appliquerFiltre() {
+  async appliquerFiltre() {
 
     // Appel du service pour récupérer les événements filtrés
-    this.eventBackservice.getEventsFiltred(this.prixMaxEvent, this.nomEvent, this.themeEvent).subscribe(
+    (await this.eventBackservice.getEventsFiltered(this.filtre.prixMaxEvent, this.filtre.nomEvent, this.filtre.themeEvent)).subscribe(
       (events: Event[]) => {
         this.eventList = events;
       },

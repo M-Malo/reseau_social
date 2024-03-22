@@ -12,11 +12,11 @@ export class ConversationsBackService {
 
   constructor(private http: HttpClient) { }
 
-  getConversationById(conversationId : String): Observable<Conversation> {
+  async getConversationById(conversationId : String): Promise<Observable<Conversation>> {
     return this.http.get<Conversation>(`${this.apiUrl}/${conversationId}`);
   }
 
-  getConversationsByUser(userId : String): Observable<Conversation[]> {
+  async getConversationsByUser(userId : String): Promise<Observable<Conversation[]>> {
     return this.http.get<Conversation[]>(`${this.apiUrl}/get/${userId}`);
   }
 

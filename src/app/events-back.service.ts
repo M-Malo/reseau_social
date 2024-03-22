@@ -13,19 +13,19 @@ export class EventsBackService {
 
   constructor(private http: HttpClient) { }
 
-  addEvent(eventData: any): Observable<any> {
+  async addEvent(eventData: any): Promise<Observable<any>> {
     return this.http.post<any>(`${this.apiUrl}/new`, eventData);
   }
 
-  updateEvent(eventData: any): Observable<any> {
+  async updateEvent(eventData: any): Promise<Observable<any>> {
     return this.http.post<any>(`${this.apiUrl}/update/${eventData._id}`, eventData);
   }
 
-  getEvents(): Observable<Event[]> {
+  async getEvents(): Promise<Observable<Event[]>> {
     return this.http.get<Event[]>(`${this.apiUrl}`);
   }
 
-  getEventsFiltred(prix: number, nom: string, theme: string): Observable<Event[]> {
+  async getEventsFiltered(prix: number, nom: string, theme: string): Promise<Observable<Event[]>> {
     let url = `${this.apiUrl}/filtre/${prix}/`;
   
     // Ajouter le paramètre nomEvent s'il est renseigné, passer à -1 sinon
@@ -44,13 +44,16 @@ export class EventsBackService {
   
     return this.http.get<Event[]>(url);
   }
-  
 
-  getEventById(eventId : String): Observable<Event> {
+  // async getEventsFiltered(filters: any): Promise<Observable<Event[]>> {
+  //   return this.http.post<Event[]>(`${this.apiUrl}/filter`, filters);
+  // }
+
+  async getEventById(eventId : String): Promise<Observable<Event>> {
     return this.http.get<Event>(`${this.apiUrl}/${eventId}`);
   }
 
-  getEventsByUser(userId : String): Observable<Event[]> {
+  async getEventsByUser(userId : String): Promise<Observable<Event[]>> {
     return this.http.get<Event[]>(`${this.apiUrl}/get/${userId}`);
   }
 

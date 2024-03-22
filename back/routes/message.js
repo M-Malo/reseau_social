@@ -15,12 +15,24 @@ router.get('/:idConversation', async (req, res) => {
   }
 });
 
+/* Récupération du dernier message d'une conversation */
+router.get('/last/:idConversation', async (req, res) => {
+  try {
+    const message = await Message.getLastMessageByConversation(req.params.idConversation);
+    res.json(message);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Une erreur s'est produite lors de la récupération de la conversation." });
+  }
+});
+
 /* Envoi d'un message dans une conversation */
 router.post('/:idConv/new', async (req, res) => {
   try {
     Message.addMessage(
       req.params.idConv,
       req.body.userId,
+      req.body.name_user,
       req.body.contenu,
       req.body.date)
       .then(console.log);
