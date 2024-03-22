@@ -13,11 +13,18 @@ import { User } from 'src/app/model/user';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent{
-  userConnected: string = "M-Malo";
   eventList: Event[] = [];
   filtre = {prixMaxEvent : 50, nomEvent : "", themeEvent: "-1"}
+  userId: string = "";
+  username: string = "";
 
   constructor(private eventBackservice: EventsBackService, private usersBackService : UsersBackService, private router: Router) {
+    if(localStorage.getItem("userId")){
+      this.userId = JSON.stringify(localStorage.getItem("userId"))
+      this.username = JSON.stringify(localStorage.getItem("username"))
+      this.userId = this.userId.split('"')[1]
+      this.username = this.username.split('"')[1]
+    }
     this.getEvents();
   }
 
