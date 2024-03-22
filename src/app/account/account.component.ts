@@ -3,6 +3,8 @@ import { User } from '../model/user';
 import { Event } from '../model/event';
 import { UsersBackService } from '../users-back.service';
 import { EventsBackService } from '../events-back.service';
+import { FavorisBackService } from '../favoris-back.service';
+import { Favori } from '../model/favori';
 
 @Component({
   selector: 'app-account',
@@ -10,14 +12,12 @@ import { EventsBackService } from '../events-back.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent {
-  nbEventFavoris: number = 5
+  nbEventFavoris: number = 0
   utilisateur: User = new User("0","Username","mail","password","nom","prenom","2000-01-01",false, "image")
   eventList : String[] = [];
-  //eventList = ["Bowling entre copaing","Laser Game","Anniversaire a la casa avec tous les copains du monde entier !!"]
 
 
-  constructor(private userBackservice: UsersBackService, private eventBackservice: EventsBackService) {
-    //this.utilisateur = new User("0","M-Malo","malo.guetto@isen-ouest.yncrea.fr","123poulet","Guetto","Malo","2001-02-28",true, "image")
+  constructor(private userBackservice: UsersBackService, private eventBackservice: EventsBackService, private favorisBackService: FavorisBackService) {
     if(localStorage.getItem("userId")){
       let userId: string = JSON.stringify(localStorage.getItem("userId"))
       let username: string = JSON.stringify(localStorage.getItem("username"))
@@ -26,6 +26,7 @@ export class AccountComponent {
       console.log(userId)
       this.getUser(userId);
       this.getEvents(userId);
+      this.getNbFavori(userId);
     }
   }
 
@@ -35,7 +36,7 @@ export class AccountComponent {
 
   async getUser(userId:string) {
 
-    (await this.userBackservice.getUserById(userId)).subscribe( //TODO comment récupérer userId ??
+    (await this.userBackservice.getUserById(userId)).subscribe(
       (user: User) => {
         this.utilisateur = user;
         console.log(this.utilisateur);
@@ -48,13 +49,25 @@ export class AccountComponent {
 
   async getEvents(userId:string) {
 
-    (await this.eventBackservice.getEventsByUser(userId)).subscribe( //TODO comment récupérer userId ??
+    (await this.eventBackservice.getEventsByUser(userId)).subscribe(
       (events: Event[]) => {
         console.log(events)
         for (let event of events) {
           this.eventList.push(event.nom);
         }
         console.log(this.eventList);
+      },
+      (error) => {
+        console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
+      }
+    );
+  }
+
+  async getNbFavori(userId:string) {
+
+    (await this.favorisBackService.getFavorisByUser(userId)).subscribe(
+      (favoris: Favori[]) => {
+        this.nbEventFavoris = favoris.length;
       },
       (error) => {
         console.error('Une erreur s\'est produite lors de la récupération des événements :', error);
